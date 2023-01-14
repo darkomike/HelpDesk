@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:helpdesk/constants/colors.dart';
+import 'package:helpdesk/screens/screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Help Desk',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: ''),
+      home: const Login(),
     );
   }
 }
