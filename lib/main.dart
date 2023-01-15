@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk/constants/colors.dart';
-import 'package:helpdesk/screens/screens.dart';
+import 'package:helpdesk/screens/index.dart';
 
 void main() {
   runApp(const MyApp());

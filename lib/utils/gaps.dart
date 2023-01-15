@@ -11,3 +11,5 @@ SizedBox getSpaceW({required double width}) {
     width: width,
   );
 }
+
+Size getMySize({required BuildContext context}) => MediaQuery.of(context).size;
