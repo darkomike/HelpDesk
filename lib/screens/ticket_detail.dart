@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk/constants/index.dart';
 import 'package:helpdesk/constants/texts.dart';
-import 'package:helpdesk/main.dart';
 import 'package:helpdesk/utils/gaps.dart';
 import 'package:helpdesk/widgets/index.dart';
 
@@ -338,10 +337,14 @@ class _TicketDetailState extends State<TicketDetail> {
                                                           height: 10,
                                                           thickness: 2,
                                                         ),
-                                                         UnassignedAgentButton(name: "Jamsime Osei", onPressed: (){},),
-                                                          UnassignedAgentButton(name: "Vivian Antwi", onPressed: (){},),
-
-                                                      
+                                                        UnassignedAgentButton(
+                                                          name: "Jamsime Osei",
+                                                          onPressed: () {},
+                                                        ),
+                                                        UnassignedAgentButton(
+                                                          name: "Vivian Antwi",
+                                                          onPressed: () {},
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -374,7 +377,9 @@ class _TicketDetailState extends State<TicketDetail> {
 
 class UnassignedAgentButton extends StatelessWidget {
   const UnassignedAgentButton({
-    Key? key,required this.name, required this.onPressed,
+    Key? key,
+    required this.name,
+    required this.onPressed,
   }) : super(key: key);
 
   final String name;
@@ -388,7 +393,7 @@ class UnassignedAgentButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Icon(Icons.account_circle),
-           CustomText(label: name),
+          CustomText(label: name),
           CustomElevatedButton(
               borderRadius: BorderRadius.circular(10),
               onPressed: onPressed,

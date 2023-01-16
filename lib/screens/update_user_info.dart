@@ -20,14 +20,14 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Update User",
         backgroundColor: whiteColor,
       ),
       body: Form(
           key: _formKey,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -81,7 +81,7 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                             return CustomDialog(
                                 body: Column(
                                   children: [
-                                    CustomText(label: "Confirm changes?"),
+                                    const CustomText(label: "Confirm changes?"),
                                     getSpaceH(height: 20),
                                     Row(
                                       mainAxisAlignment:
@@ -90,10 +90,11 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                                         CustomElevatedButton(
                                             borderRadius:
                                                 BorderRadius.circular(20),
-                                            gradient: LinearGradient(colors: [
-                                              Colors.greenAccent,
-                                              Colors.teal
-                                            ]),
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  Colors.greenAccent,
+                                                  Colors.teal
+                                                ]),
                                             onPressed: () {},
                                             child: const CustomText(
                                               label: "Yes",
@@ -102,10 +103,11 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                                         CustomElevatedButton(
                                             borderRadius:
                                                 BorderRadius.circular(20),
-                                            gradient: LinearGradient(colors: [
-                                              Colors.red,
-                                              Colors.redAccent
-                                            ]),
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  Colors.red,
+                                                  Colors.redAccent
+                                                ]),
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
@@ -121,7 +123,7 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                           },
                         );
                       },
-                      child: CustomText(
+                      child: const CustomText(
                         label: "Confirm",
                         color: whiteColor,
                       ))

@@ -17,7 +17,7 @@ class _AdminHomeState extends State<AdminHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: AdminDrawer(),
+      drawer: const AdminDrawer(),
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () {
@@ -37,11 +37,19 @@ class _AdminHomeState extends State<AdminHome> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: CustomTextField(
-                onChanged: (value){}, topLeft: 5, topRight: 20, bottomLeft: 10, bottomRight: 20, prefix: Icon(Icons.search, size: 19,),
+                onChanged: (value) {},
+                topLeft: 5,
+                topRight: 20,
+                bottomLeft: 10,
+                bottomRight: 20,
+                prefix: const Icon(
+                  Icons.search,
+                  size: 19,
+                ),
                 controller: _searchTicket,
                 hintText: 'Type user ID',
                 labelText: 'User ID'),
-          ), 
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -89,9 +97,13 @@ class _AdminHomeState extends State<AdminHome> {
           Flexible(
             child: ListView(
               physics: const BouncingScrollPhysics(),
-              children:  [
-                const TicketButton(isSigned: false, priority: "high", status: 'Open', subject: 'lipsum tyrue wuw wu wuOK0K0WM '),
-               ],
+              children: const [
+                TicketButton(
+                    isSigned: false,
+                    priority: "high",
+                    status: 'Open',
+                    subject: 'lipsum tyrue wuw wu wuOK0K0WM '),
+              ],
             ),
           ),
         ]),
@@ -99,7 +111,6 @@ class _AdminHomeState extends State<AdminHome> {
     );
   }
 }
-
 
 class NoTicket extends StatelessWidget {
   const NoTicket({super.key});

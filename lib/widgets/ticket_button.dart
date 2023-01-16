@@ -7,7 +7,10 @@ import 'package:helpdesk/widgets/index.dart';
 class TicketButton extends StatefulWidget {
   const TicketButton({
     Key? key,
-    required this.subject, required this.isSigned, required this.priority, required this.status,
+    required this.subject,
+    required this.isSigned,
+    required this.priority,
+    required this.status,
   }) : super(key: key);
 
   final String subject;
@@ -40,8 +43,7 @@ class _TicketButtonState extends State<TicketButton> {
                 onPressed: () {
                   push(context: context, destination: const TicketDetail());
                 },
-                child:  CustomText(
-                    label: widget.subject),
+                child: CustomText(label: widget.subject),
               ),
             ),
             Expanded(
@@ -126,9 +128,9 @@ class _TicketButtonState extends State<TicketButton> {
                     },
                   );
                 },
-                child:  Text(widget.status,
+                child: Text(widget.status,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: blackColor,
                     )),
               ),
