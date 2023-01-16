@@ -16,8 +16,8 @@ class AdminDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(colors: [greenColor, greenColor])),
+        decoration:  BoxDecoration(
+            gradient: LinearGradient(colors: getBackgroundGradientOpacity(opacity: 0.4))),
         child: Column(
           children: [
             DrawerHeader(

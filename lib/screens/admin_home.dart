@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk/constants/index.dart';
+import 'package:helpdesk/screens/ticket_detail.dart';
 import 'package:helpdesk/utils/index.dart';
 import 'package:helpdesk/widgets/index.dart';
 
@@ -37,21 +38,32 @@ class _AdminHomeState extends State<AdminHome> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: CustomTextField(
-                onChanged: (value){}, topLeft: 5, topRight: 20, bottomLeft: 10, bottomRight: 20, prefix: Icon(Icons.search, size: 19,),
+                onChanged: (value) {},
+                topLeft: 5,
+                topRight: 20,
+                bottomLeft: 10,
+                bottomRight: 20,
+                prefix: Icon(
+                  Icons.search,
+                  size: 19,
+                ),
                 controller: _searchTicket,
                 hintText: 'Type user ID',
                 labelText: 'User ID'),
-          ), 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text("4 Tickets",
-                  style: TextStyle(
-                      color: blackColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.sort))
-            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("4 Tickets",
+                    style: TextStyle(
+                        color: blackColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.sort))
+              ],
+            ),
           ),
           Divider(
             height: 5,
@@ -60,24 +72,34 @@ class _AdminHomeState extends State<AdminHome> {
           ),
           Column(
             children: [
-              Row(
-                children: [
-                  const Expanded(child: SizedBox()),
-                  getSpaceW(width: 10),
-                  const Expanded(
-                      flex: 4,
-                      child: Text("SUBJECTS",
-                          style: TextStyle(
-                              color: blackColor, fontWeight: FontWeight.bold))),
-                  getSpaceW(width: 10),
-                  const Expanded(
-                      flex: 2,
-                      child: Text("STATUS",
-                          style: TextStyle(
-                              color: blackColor, fontWeight: FontWeight.bold))),
-                  getSpaceW(width: 10),
-                  const Expanded(child: SizedBox())
-                ],
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    getSpaceW(width: 10),
+                    const Expanded(
+                        flex: 4,
+                        child: CustomText(
+                            label: "SUBJECTS",
+                            color: blackColor,
+                            fontWeight: FontWeight.bold)),
+                    getSpaceW(width: 10),
+                    const Expanded(
+                        flex: 2,
+                        child: CustomText(
+                            label: "STATUS",
+                            color: blackColor,
+                            fontWeight: FontWeight.bold)),
+                    getSpaceW(width: 10),
+                    const Expanded(
+                        flex: 2,
+                        child: CustomText(
+                            label: "PRIORITY",
+                            color: blackColor,
+                            fontWeight: FontWeight.bold)),
+                    getSpaceW(width: 10),
+                  ],
+                ),
               ),
               Divider(
                 height: 5,
@@ -89,9 +111,16 @@ class _AdminHomeState extends State<AdminHome> {
           Flexible(
             child: ListView(
               physics: const BouncingScrollPhysics(),
-              children:  [
-                const TicketButton(isSigned: false, priority: "high", status: 'Open', subject: 'lipsum tyrue wuw wu wuOK0K0WM '),
-               ],
+              children: [
+                TicketButton(
+                    isSigned: false,
+                    priority: "High",
+                    status: 'Open',
+                    subject: 'lipsum tyrue wuw wu wuOK0K0WM ',
+                    onTap: () {
+                      push(context: context, destination: TicketDetail());
+                    }),
+              ],
             ),
           ),
         ]),
@@ -99,7 +128,6 @@ class _AdminHomeState extends State<AdminHome> {
     );
   }
 }
-
 
 class NoTicket extends StatelessWidget {
   const NoTicket({super.key});

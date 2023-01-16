@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helpdesk/constants/index.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
@@ -15,10 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderRadius,
     this.width,
     this.height = 44.0,
-    this.gradient = const LinearGradient(colors: [
-      Color.fromARGB(255, 137, 226, 21),
-      Color.fromARGB(255, 12, 68, 29)
-    ]),
+    this.gradient =  const LinearGradient(colors: bgColorGradient),
   }) : super(key: key);
 
   @override
