@@ -39,7 +39,7 @@ class _CreateUserState extends State<CreateUser> {
         children: [
           InkWell(
             onTap: () {
-              push(context: context, destination: BatchUpload());
+              push(context: context, destination: const BatchUpload());
             },
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -60,7 +60,7 @@ class _CreateUserState extends State<CreateUser> {
           getSpaceW(width: 10),
           InkWell(
             onTap: () {
-              push(context: context, destination: AddUser());
+              push(context: context, destination: const AddUser());
             },
             child: Container(
               padding: const EdgeInsets.all(20),

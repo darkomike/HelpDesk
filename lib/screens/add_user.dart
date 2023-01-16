@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/screens/users.dart';
 import 'package:helpdesk/utils/index.dart';
 import 'package:helpdesk/widgets/index.dart';
 
@@ -33,7 +32,6 @@ class _AddUserState extends State<AddUser> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  
                   getSpaceH(height: 10),
                   CustomTextField(
                       controller: _surnameController,
@@ -54,44 +52,40 @@ class _AddUserState extends State<AddUser> {
                       controller: _emailController,
                       hintText: "maddo@gmail.com",
                       labelText: "Email"),
-                                        getSpaceH(height: 20),
-
-                      Row(
-                        children: [
-                          const Expanded(child:  CustomText(label: "Select Role: ")),
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.center,
-                                          height: 40,
-                                          
-                                          padding: const EdgeInsets.all(7),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(),
-                                            borderRadius: BorderRadius.circular(15),
-                                          ),
-                                          child: DropdownButton(
-                          
-                                              underline: const SizedBox(),
-                                              value: _role,
-                                              items: _roles
-                              .map<DropdownMenuItem<String>>(
-                                  (value) => DropdownMenuItem(
-                                      value: value,
-                                      child: CustomText(
-                                        label: value,
-                                      )))
-                              .toList(),
-                                              onChanged: (value) {
-                            setState(() {
-                              _role = value!;
-                            });
-                                              }),
-                                        ),
+                  getSpaceH(height: 20),
+                  Row(
+                    children: [
+                      const Expanded(child: CustomText(label: "Select Role: ")),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        ],
+                          child: DropdownButton(
+                              underline: const SizedBox(),
+                              value: _role,
+                              items: _roles
+                                  .map<DropdownMenuItem<String>>(
+                                      (value) => DropdownMenuItem(
+                                          value: value,
+                                          child: CustomText(
+                                            label: value,
+                                          )))
+                                  .toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  _role = value!;
+                                });
+                              }),
+                        ),
                       ),
+                    ],
+                  ),
                   getSpaceH(height: 40),
-
                   CustomElevatedButton(
                       borderRadius: BorderRadius.circular(20),
                       width: getMySize(context: context).height / 2,

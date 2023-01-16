@@ -15,7 +15,7 @@ class _BatchUploadState extends State<BatchUpload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Batch Upload",
         backgroundColor: whiteColor,
       ),
@@ -46,9 +46,9 @@ class _BatchUploadState extends State<BatchUpload> {
               width: getMySize(context: context).width / 2,
               borderRadius: BorderRadius.circular(20),
               onPressed: () {
-                push(context: context, destination: NewUsers());
+                push(context: context, destination: const NewUsers());
               },
-              child: CustomText(
+              child: const CustomText(
                 color: whiteColor,
                 label: "Submit",
               ))

@@ -43,7 +43,7 @@ class _NewUsersState extends State<NewUsers> {
                             height: 10,
                             thickness: 2,
                           ),
-                          CustomText(
+                          const CustomText(
                               textAlign: TextAlign.center,
                               label: "Confirm addition of '2' Users?"),
                           getSpaceH(height: 10),
@@ -52,7 +52,7 @@ class _NewUsersState extends State<NewUsers> {
                             children: [
                               CustomElevatedButton(
                                   borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(colors: [
+                                  gradient: const LinearGradient(colors: [
                                     Colors.greenAccent,
                                     Colors.teal
                                   ]),
@@ -63,10 +63,8 @@ class _NewUsersState extends State<NewUsers> {
                                   )),
                               CustomElevatedButton(
                                   borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(colors: [
-                                    Colors.red,
-                                    Colors.redAccent
-                                  ]),
+                                  gradient: const LinearGradient(
+                                      colors: [Colors.red, Colors.redAccent]),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },

@@ -17,7 +17,7 @@ class _UsersState extends State<Users> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Users",
         backgroundColor: whiteColor,
       ),
@@ -33,7 +33,7 @@ class _UsersState extends State<Users> {
                   topRight: 20,
                   bottomLeft: 10,
                   bottomRight: 20,
-                  prefix: const  Icon(
+                  prefix: const Icon(
                     Icons.search,
                     size: 19,
                   ),
@@ -114,7 +114,8 @@ class _UsersState extends State<Users> {
                                         Navigator.pop(context);
                                         push(
                                             context: context,
-                                            destination: UpdateUserInfo());
+                                            destination:
+                                                const UpdateUserInfo());
                                       },
                                       child: const CustomText(
                                         label: "UPDATE",
@@ -139,7 +140,7 @@ class _UsersState extends State<Users> {
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   children: [
-                                                    CustomText(
+                                                    const CustomText(
                                                       label:
                                                           "Do you want to delete user: 'kwantwi12'?",
                                                       textAlign:
@@ -157,7 +158,7 @@ class _UsersState extends State<Users> {
                                                                     .circular(
                                                                         20),
                                                             gradient:
-                                                                LinearGradient(
+                                                                const LinearGradient(
                                                                     colors: [
                                                                   Colors
                                                                       .greenAccent,
@@ -175,7 +176,7 @@ class _UsersState extends State<Users> {
                                                                     .circular(
                                                                         20),
                                                             gradient:
-                                                                LinearGradient(
+                                                                const LinearGradient(
                                                                     colors: [
                                                                   Colors.red,
                                                                   Colors
