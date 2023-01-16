@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
 
               const CustomText(label: "Welcome Back", fontSize: 20, fontWeight: FontWeight.bold,),
               getSpaceH(height: 20),
-              Container(
+              SizedBox(
                 height: 100,
                 width: 100,
                 child: Image(image: AssetImage(getImagePath(name: 'logo', extension: 'png') )),

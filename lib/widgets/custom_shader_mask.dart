@@ -12,9 +12,9 @@ class CustomShaderMask extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: ShaderMask(
-        child: child,
         blendMode: blendMode,
         shaderCallback: (rect) => gradient.createShader(rect),
+        child: child,
       ),
     );
   }

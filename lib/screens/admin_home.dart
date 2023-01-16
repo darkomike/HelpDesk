@@ -19,7 +19,7 @@ class _AdminHomeState extends State<AdminHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: AdminDrawer(),
+      drawer: const AdminDrawer(),
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () {
@@ -44,7 +44,7 @@ class _AdminHomeState extends State<AdminHome> {
                 topRight: 20,
                 bottomLeft: 10,
                 bottomRight: 20,
-                prefix: Icon(
+                prefix: const Icon(
                   Icons.search,
                   size: 19,
                 ),
@@ -119,7 +119,7 @@ class _AdminHomeState extends State<AdminHome> {
                     status: 'Open',
                     subject: 'lipsum tyrue wuw wu wuOK0K0WM ',
                     onTap: () {
-                      push(context: context, destination: TicketDetail());
+                      push(context: context, destination: const TicketDetail());
                     }),
               ],
             ),

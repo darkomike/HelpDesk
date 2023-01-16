@@ -30,7 +30,7 @@ class _TicketButtonState extends State<TicketButton> {
       onTap: widget.onTap,
       highlightColor: greenColor.withOpacity(0.3),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         child: Column(
           children: [
             Row(
