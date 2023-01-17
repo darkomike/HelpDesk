@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
+import 'index.dart';
 
 class CustomShaderMask extends StatelessWidget {
   final Widget child;
   final Gradient gradient;
   final BlendMode blendMode;
   const CustomShaderMask(
-      {Key? key, required this.child, required this.gradient, required this.blendMode})
+      {Key? key,
+      required this.child,
+      required this.gradient,
+      required this.blendMode})
       : super(key: key);
 
   @override

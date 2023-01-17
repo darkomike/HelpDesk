@@ -10,21 +10,26 @@ pushReplace(
     required Widget destination,
     AxisDirection direction = AxisDirection.right}) {
   Navigator.pushReplacement(
-      context, CustomPageRoute(child: destination, direction: direction));
+    context,
+    CustomPageRoute(child: destination, direction: direction),
+  );
 }
 
-push(
-    {required BuildContext context,
-    required Widget destination,
-    AxisDirection direction = AxisDirection.right}) {
+push({
+  required BuildContext context,
+  required Widget destination,
+  AxisDirection direction = AxisDirection.right,
+}) {
   Navigator.push(
-      context, CustomPageRoute(child: destination, direction: direction));
+    context,
+    CustomPageRoute(child: destination, direction: direction),
+  );
 }
 
-getImagePathPng({required String name}){
+getImagePathPng({required String name}) {
   return "assets/images/$name.png";
 }
 
-getImagePathJpg({required String name}){
+getImagePathJpg({required String name}) {
   return "assets/images/$name.jpg";
 }

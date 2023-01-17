@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/screens/add_user.dart';
-import 'package:helpdesk/screens/batch_upload.dart';
-import 'package:helpdesk/utils/index.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
 class CreateUser extends StatefulWidget {
   const CreateUser({super.key});
@@ -19,20 +14,10 @@ class _CreateUserState extends State<CreateUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: CustomAppBar(
-        leading: IconButton(
-          onPressed: () {
-            _scaffoldKey.currentState!.openDrawer();
-          },
-          icon: const Icon(
-            Icons.menu,
-            color: blackColor,
-          ),
-        ),
+      appBar: const CustomAppBar(
         title: "Create User",
         backgroundColor: whiteColor,
       ),
-      drawer: const AdminDrawer(),
       body: Center(
           child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

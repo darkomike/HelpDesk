@@ -1,3 +1,3 @@
-export 'login.dart';
-export 'ticket_detail.dart';
-export 'admin_home.dart';
+export '../index.dart';
+
+export 'admin/index.dart';

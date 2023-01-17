@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/colors.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -14,7 +12,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           indent: 40,
           endIndent: 40,
         )),
-    required this.title, this.leading,
+    required this.title,
+    this.leading,
     this.backgroundColor,
     this.actions,
   }) : super(key: key);
@@ -24,7 +23,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final String title;
   final Widget? leading;
-  
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -32,14 +30,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: const IconThemeData(color: blackColor),
+        iconTheme: const IconThemeData(color: blackColor),
         leading: leading,
         centerTitle: true,
         elevation: 0.0,
         bottom: bottom,
         backgroundColor: backgroundColor,
         actions: actions,
-        title: CustomText(label: title, fontSize: 25, fontWeight: FontWeight.bold,)
-        );
+        title: CustomText(
+          label: title,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ));
   }
 }

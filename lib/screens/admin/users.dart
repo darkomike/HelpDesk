@@ -1,96 +1,42 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/utils/index.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
-class NewUsers extends StatefulWidget {
-  const NewUsers({super.key});
+class Users extends StatefulWidget {
+  const Users({super.key});
 
   @override
-  State<NewUsers> createState() => _NewUsersState();
+  State<Users> createState() => _UsersState();
 }
 
-class _NewUsersState extends State<NewUsers> {
+class _UsersState extends State<Users> {
+  final _userIDController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: "New Users",
+      appBar: const CustomAppBar(
+        title: "Users",
         backgroundColor: whiteColor,
-        actions: [
-          IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(
-                                colors: [greenColor, greenColor])),
-                        child:
-                            Column(mainAxisSize: MainAxisSize.min, children: [
-                          const CustomText(
-                            label: "Confirm",
-                            fontWeight: FontWeight.w600,
-                          ),
-                          const Divider(
-                            height: 10,
-                            thickness: 2,
-                          ),
-                          const CustomText(
-                              textAlign: TextAlign.center,
-                              label: "Confirm addition of '2' Users?"),
-                          getSpaceH(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CustomElevatedButton(
-                                  borderRadius: BorderRadius.circular(20),
-                                  gradient: const LinearGradient(colors: [
-                                    Colors.greenAccent,
-                                    Colors.teal
-                                  ]),
-                                  onPressed: () {},
-                                  child: const CustomText(
-                                    label: "Yes",
-                                    color: whiteColor,
-                                  )),
-                              CustomElevatedButton(
-                                  borderRadius: BorderRadius.circular(20),
-                                  gradient: const LinearGradient(
-                                      colors: [Colors.red, Colors.redAccent]),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const CustomText(
-                                    label: "No",
-                                    color: whiteColor,
-                                  ))
-                            ],
-                          )
-                        ]),
-                      ),
-                    );
-                  },
-                );
-              },
-              icon: const Icon(
-                Icons.done,
-                color: greenColor,
-                size: 25,
-              ))
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: CustomTextField(
+                  onChanged: (value) {},
+                  topLeft: 5,
+                  topRight: 20,
+                  bottomLeft: 10,
+                  bottomRight: 20,
+                  prefix: const Icon(
+                    Icons.search,
+                    size: 19,
+                  ),
+                  controller: _userIDController,
+                  hintText: 'Type user ID',
+                  labelText: 'User ID'),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -148,7 +94,117 @@ class _NewUsersState extends State<NewUsers> {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   NewUserButton(
-                    onCancel: () {},
+                    onCancel: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return CustomDialog(
+                            body: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomElevatedButton(
+                                      borderRadius: BorderRadius.circular(10),
+                                      width:
+                                          getMySize(context: context).width / 2,
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        push(
+                                            context: context,
+                                            destination:
+                                                const UpdateUserInfo());
+                                      },
+                                      child: const CustomText(
+                                        label: "UPDATE",
+                                        color: whiteColor,
+                                      )),
+                                  getSpaceH(height: 10),
+                                  CustomElevatedButton(
+                                      gradient: const LinearGradient(colors: [
+                                        Colors.red,
+                                        Colors.redAccent
+                                      ]),
+                                      borderRadius: BorderRadius.circular(10),
+                                      width:
+                                          getMySize(context: context).width / 2,
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return CustomDialog(
+                                                body: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    const CustomText(
+                                                      label:
+                                                          "Do you want to delete user: 'kwantwi12'?",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                    getSpaceH(height: 10),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        CustomElevatedButton(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            gradient:
+                                                                const LinearGradient(
+                                                                    colors: [
+                                                                  Colors
+                                                                      .greenAccent,
+                                                                  Colors.teal
+                                                                ]),
+                                                            onPressed: () {},
+                                                            child:
+                                                                const CustomText(
+                                                              label: "Yes",
+                                                              color: whiteColor,
+                                                            )),
+                                                        CustomElevatedButton(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            gradient:
+                                                                const LinearGradient(
+                                                                    colors: [
+                                                                  Colors.red,
+                                                                  Colors
+                                                                      .redAccent
+                                                                ]),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child:
+                                                                const CustomText(
+                                                              label: "No",
+                                                              color: whiteColor,
+                                                            ))
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                                title: "Confirm Deletion");
+                                          },
+                                        );
+                                      },
+                                      child: const CustomText(
+                                        label: "DELETE",
+                                        color: whiteColor,
+                                      ))
+                                ]),
+                            title: "Options",
+                          );
+                        },
+                      );
+                    },
                     onTap: () {
                       showDialog(
                         context: context,
@@ -287,6 +343,41 @@ class _NewUsersState extends State<NewUsers> {
   }
 }
 
+class CustomDialog extends StatelessWidget {
+  const CustomDialog({
+    Key? key,
+    required this.body,
+    required this.title,
+  }) : super(key: key);
+
+  final Widget body;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: const LinearGradient(colors: [greenColor, greenColor])),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          CustomText(
+            label: title,
+            fontWeight: FontWeight.w600,
+          ),
+          const Divider(
+            height: 10,
+            thickness: 2,
+          ),
+          body
+        ]),
+      ),
+    );
+  }
+}
+
 class NewUserButton extends StatelessWidget {
   const NewUserButton({
     Key? key,
@@ -335,8 +426,8 @@ class NewUserButton extends StatelessWidget {
                 child: IconButton(
                     onPressed: onCancel,
                     icon: const Icon(
-                      Icons.cancel,
-                      color: Colors.red,
+                      Icons.more_horiz,
+                      color: blackColor,
                     )),
               )
             ],

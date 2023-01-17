@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/utils/index.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
 class AddUser extends StatefulWidget {
   const AddUser({super.key});

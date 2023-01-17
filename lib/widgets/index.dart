@@ -11,3 +11,7 @@ export 'custom_text.dart';
 export 'custom_textfield.dart';
 
 export 'ticket_button.dart';
+
+export '../index.dart';
+
+export 'ticket_dialog.dart';

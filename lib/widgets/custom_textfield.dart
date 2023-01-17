@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
+import 'index.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -8,7 +7,9 @@ class CustomTextField extends StatelessWidget {
       required String hintText,
       required String labelText,
       this.bottomLeft = 10,
-      this.bottomRight = 20, this.minLines, this.maxLines,
+      this.bottomRight = 20,
+      this.minLines,
+      this.maxLines,
       this.topLeft = 5,
       this.topRight = 20,
       this.borderFocusColor = greenColor,

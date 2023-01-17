@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/screens/users.dart';
-import 'package:helpdesk/utils/gaps.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
 class UpdateUserInfo extends StatefulWidget {
   const UpdateUserInfo({super.key});

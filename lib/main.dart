@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/screens/index.dart';
+import 'index.dart';
+
 
 void main() {
   runApp(const MyApp());

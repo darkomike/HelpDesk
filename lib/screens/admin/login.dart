@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/constants/index.dart';
-import 'package:helpdesk/screens/index.dart';
-import 'package:helpdesk/utils/index.dart';
-import 'package:helpdesk/utils/paths.dart';
-import 'package:helpdesk/widgets/index.dart';
+import 'index.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -31,14 +26,21 @@ class _LoginState extends State<Login> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-                            getSpaceH(height: 20),
-
-              const CustomText(label: "Welcome Back", fontSize: 20, fontWeight: FontWeight.bold,),
+              getSpaceH(height: 20),
+              const CustomText(
+                label: "Welcome Back",
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
               getSpaceH(height: 20),
               SizedBox(
                 height: 100,
                 width: 100,
-                child: Image(image: AssetImage(getImagePath(name: 'logo', extension: 'png') )),
+                child: Image(
+                  image: AssetImage(
+                    getImagePath(name: 'logo', extension: 'png'),
+                  ),
+                ),
               ),
               getSpaceH(height: 20),
               CustomTextField(
@@ -54,13 +56,22 @@ class _LoginState extends State<Login> {
               ),
               getSpaceH(height: 20),
               CustomElevatedButton(
-                  width: double.infinity,
-                  height: 50,
-                  borderRadius: BorderRadius.circular(20),
-                  onPressed: () {
-                    pushReplace(context: context, destination: const AdminHome());
-                  },
-                  child: const CustomText(label: "Login", color: whiteColor , fontSize: 18, fontWeight: FontWeight.bold,)),
+                width: double.infinity,
+                height: 50,
+                borderRadius: BorderRadius.circular(20),
+                onPressed: () {
+                  pushReplace(
+                    context: context,
+                    destination: const LandingPage(),
+                  );
+                },
+                child: const CustomText(
+                  label: "Login",
+                  color: whiteColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
         ),
