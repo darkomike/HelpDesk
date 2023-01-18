@@ -12,13 +12,7 @@ class AdminDrawer extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.8,
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color.fromARGB(255, 244, 255, 244).withOpacity(0.7),
-                const Color.fromARGB(255, 4, 186, 7).withOpacity(0.7)
-              ]),
+          color: whiteColor,
         ),
         child: Column(
           children: [
@@ -26,54 +20,52 @@ class AdminDrawer extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.all(20),
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.transparent,
-                      child: Image.asset(
-                        'assets/images/profile.png',
-                        height: 100,
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      margin: const EdgeInsets.all(20),
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundColor: greenColor.withOpacity(0.3),
+                        child: Icon(Icons.person_outlined)
                       ),
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        color: Colors.transparent,
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Text(
-                          'Admin',
-                          style: TextStyle(
-                            fontSize: 20,
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          color: Colors.transparent,
+                          padding: const EdgeInsets.all(10.0),
+                          child: const Text(
+                            'Admin',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Text(
-                          'admin@mail.com',
-                          style: TextStyle(
-                            fontSize: 20,
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          child: const Text(
+                            'admin@mail.com',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            Divider(
-              height: 5,
-              thickness: 1.1,
-              color: blackColor.withOpacity(0.4),
-            ),
             const Center(
               child: CustomText(
                 label: 'STATUSES',
-                fontSize: 25,
-                letterSpacing: 3,
+                fontSize: 20,
+                letterSpacing: 1,
               ),
             ),
             drawerMenuItem(label: 'Open', value: '4', onTap: () {}),
@@ -93,16 +85,18 @@ Widget drawerMenuItem({
   required onTap,
 }) {
   return InkWell(
+    highlightColor: greenColor.withOpacity(.7),
     onTap: onTap,
     child: Column(
       children: [
         ListTile(
           title: CustomText(
             label: label,
-            fontSize: 20,
-            color: const Color.fromARGB(255, 0, 0, 0),
+            fontSize: 18 ,
+            color: blackColor
           ),
           trailing: Card(
+            color: greenColor.withOpacity(0.2),
             shape: const CircleBorder(),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -116,8 +110,8 @@ Widget drawerMenuItem({
         ),
         Divider(
           height: 5,
-          thickness: 1.1,
-          color: blackColor.withOpacity(0.4),
+          thickness: 0.5,
+          color: blackColor.withOpacity(0.6),
         ),
       ],
     ),

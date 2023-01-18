@@ -14,7 +14,7 @@ class CustomTextField extends StatelessWidget {
       this.topRight = 20,
       this.borderFocusColor = greenColor,
       this.onChanged,
-      this.obscureText = false,
+      this.obscureText = false, this.validator,
       this.prefix})
       : _controller = controller,
         _hintText = hintText,
@@ -34,6 +34,7 @@ class CustomTextField extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,10 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       controller: _controller,
       onChanged: onChanged,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       minLines: minLines,
       maxLines: maxLines,
+      validator: validator,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(10),
         label: Text(_labelText),

@@ -74,24 +74,27 @@ class _AdminHomeState extends State<AdminHome> {
               child: Row(
                 children: [
                   const Expanded(
-                      flex: 4,
+                      flex: 6,
                       child: CustomText(
+                        textAlign: TextAlign.center,
                           label: "SUBJECTS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
                   getSpaceW(width: 20),
                   const Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: CustomText(
+                        textAlign: TextAlign.center,
                           label: "STATUS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
                   getSpaceW(width: 10),
                   const Expanded(
-                      flex: 2,
+                      flex: 4,
                       child: CustomText(
                           label: "PRIORITY",
                           color: blackColor,
+                          textAlign: TextAlign.center, 
                           fontWeight: FontWeight.bold)),
                   getSpaceW(width: 10),
                 ],
@@ -103,7 +106,12 @@ class _AdminHomeState extends State<AdminHome> {
               color: blackColor.withOpacity(0.4),
             ),
             Flexible(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>   Divider(
+            height: 5,
+            thickness: 1.1,
+            color: blackColor.withOpacity(0.4),
+          ),
                 itemCount: 4,
                 itemBuilder: (BuildContext context, index) {
                   return TicketButton(

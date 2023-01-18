@@ -26,30 +26,21 @@ class _TicketButtonState extends State<TicketButton> {
     return InkWell(
       onTap: widget.onTap,
       highlightColor: greenColor.withOpacity(0.3),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(flex: 4, child: CustomText(label: widget.subject)),
-                Expanded(
-                    flex: 2,
-                    child: CustomText(label: widget.status, color: blackColor)),
-                Expanded(
-                    flex: 2,
-                    child:
-                        CustomText(label: widget.priority, color: blackColor)),
-              ],
-            ),
-          ),
-          Divider(
-            height: 5,
-            thickness: 1.1,
-            color: blackColor.withOpacity(0.4),
-          ),
-        ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(flex: 4, child: CustomText(label: widget.subject)),
+            Expanded(
+                flex: 2,
+                child: CustomText(label: widget.status, color: blackColor)),
+            Expanded(
+                flex: 2,
+                child:
+                    CustomText(label: widget.priority, color: blackColor)),
+          ],
+        ),
       ),
     );
   }

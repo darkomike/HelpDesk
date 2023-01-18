@@ -8,6 +8,7 @@ class Users extends StatefulWidget {
 }
 
 class _UsersState extends State<Users> {
+
   final _userIDController = TextEditingController();
 
   @override
@@ -217,8 +218,7 @@ class _UsersState extends State<Users> {
                                   horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  gradient: const LinearGradient(
-                                      colors: [greenColor, greenColor])),
+                                  ),
                               child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -234,7 +234,8 @@ class _UsersState extends State<Users> {
                                       color: whiteColor.withOpacity(.4),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)
+                                              ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Row(
@@ -361,14 +362,15 @@ class CustomDialog extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(colors: [greenColor, greenColor])),
+            color: whiteColor
+            ),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           CustomText(
             label: title,
             fontWeight: FontWeight.w600,
           ),
           const Divider(
-            height: 10,
+            height: 20,
             thickness: 2,
           ),
           body

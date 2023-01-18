@@ -9,4 +9,4 @@ export 'create_user.dart';
 export 'new_users.dart';
 export 'update_user_info.dart';
 export 'users.dart';
-export 'landing_page.dart';
+export 'landing_page_admin.dart';
