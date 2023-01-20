@@ -1,6 +1,4 @@
-import 'dart:isolate';
-
-import 'package:helpdesk/screens/student/landing_page_student.dart';
+import 'package:helpdesk/widgets/custom_text_field_password.dart';
 
 import 'index.dart';
 
@@ -16,6 +14,9 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  String _text = 'Student';
+
+  bool _passwordObscure = true;
   bool _isLoading = false;
 
   @override
@@ -36,10 +37,11 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 getSpaceH(height: 20),
-                const CustomText(
-                  label: "Welcome Back",
+                CustomText(
+                  label: "Welcome Back \n$_text",
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                  textAlign: TextAlign.center,
                 ),
                 getSpaceH(height: 20),
                 SizedBox(
@@ -61,11 +63,19 @@ class _LoginState extends State<Login> {
                   labelText: 'User ID',
                 ),
                 getSpaceH(height: 20),
-                CustomTextField(
-                   validator: (value) {
+                CustomTextFieldPassword(
+                  obscureText: _passwordObscure,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _passwordObscure = !_passwordObscure;
+                      });
+                    },
+                    icon: const Icon(Icons.visibility),
+                  ),
+                  validator: (value) {
                     return value!.isEmpty ? "Invalid Input" : null;
                   },
-                 
                   controller: _passwordController,
                   hintText: '*************',
                   labelText: 'Password',
@@ -80,14 +90,57 @@ class _LoginState extends State<Login> {
                       setState(() {
                         _isLoading = true;
                       });
-                      getDelayed(
-                          duration: 3,
-                          callback: () {
-                            pushReplace(
-                              context: context,
-                              destination: const LandingPageStudent(),
-                            );
+                      switch (_text) {
+                        case "Student":
+                          getDelayed(
+                            duration: 3,
+                            callback: () {
+                              pushReplace(
+                                context: context,
+                                destination: const LandingPageStudent(),
+                              );
+                            },
+                          );
+                          break;
+                        case "Admin":
+                          getDelayed(
+                              duration: 3,
+                              callback: () {
+                                pushReplace(
+                                  context: context,
+                                  destination: const LandingPageAdmin(),
+                                );
+                              });
+                          break;
+                        case "Lecturer":
+                          setState(() {
+                            _isLoading = false;
                           });
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: CustomText(
+                              label: 'Coming Soon ...',
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ));
+                          break;
+                        case "Agent":
+                          setState(() {
+                            _isLoading = false;
+                          });
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: CustomText(
+                              label: 'Coming Soon ...',
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ));
+                          break;
+                        default:
+                          break;
+                      }
                     }
                   },
                   child: Row(
@@ -109,6 +162,85 @@ class _LoginState extends State<Login> {
                                 strokeWidth: 1.4,
                               ))
                           : const SizedBox()
+                    ],
+                  ),
+                ),
+                getSpaceH(height: 20),
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CustomText(
+                        label: 'Not $_text ?',
+                        fontSize: 18,
+                      ),
+                      getSpaceW(width: 20),
+                      TextButton(
+                        child: const Text('Change Login'),
+                        onPressed: () {
+                          // display bottom sheet
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return SizedBox(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    TextButton(
+                                      child: const CustomText(
+                                        label: 'Login as Admin',
+                                        fontSize: 18,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _text = 'Admin';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: const CustomText(
+                                        label: 'Login as Lecturer',
+                                        fontSize: 18,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _text = 'Lecturer';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: const CustomText(
+                                        label: 'Login as Agent',
+                                        fontSize: 18,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _text = 'Agent';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: const CustomText(
+                                        label: 'Login as Student',
+                                        fontSize: 18,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _text = 'Student';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

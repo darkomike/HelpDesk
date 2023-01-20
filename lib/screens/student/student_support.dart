@@ -1,5 +1,3 @@
-import 'package:helpdesk/widgets/custom_shader_mask.dart';
-
 import "index.dart";
 
 class StudentSupport extends StatefulWidget {
@@ -128,6 +126,113 @@ class _StudentSupportState extends State<StudentSupport> {
             ),
           )
         ],
+      ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "4 Tickets",
+                    style: TextStyle(
+                      color: blackColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 5,
+              thickness: 1.1,
+              color: blackColor.withOpacity(0.4),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Expanded(
+                      flex: 3,
+                      child: CustomText(
+                          textAlign: TextAlign.center,
+                          label: "SUBJECT",
+                          color: blackColor,
+                          fontWeight: FontWeight.bold)),
+                  getSpaceW(width: 20),
+                  const Expanded(
+                      flex: 3,
+                      child: CustomText(
+                          textAlign: TextAlign.center,
+                          label: "STATUS",
+                          color: blackColor,
+                          fontWeight: FontWeight.bold)),
+                  getSpaceW(width: 10),
+                  getSpaceW(width: 10),
+                ],
+              ),
+            ),
+            Divider(
+              height: 5,
+              thickness: 1.1,
+              color: blackColor.withOpacity(0.4),
+            ),
+            Flexible(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  height: 5,
+                  thickness: 1.1,
+                  color: blackColor.withOpacity(0.4),
+                ),
+                itemCount: 4,
+                itemBuilder: (BuildContext context, index) {
+                  return InkWell(
+                    onTap: () {},
+                    highlightColor: greenColor.withOpacity(0.3),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Expanded(
+                            flex: 4,
+                            child: CustomText(
+                              label:
+                                  'Great to have you onboard,The next step is crucial, yet simple! To see messages',
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: CustomText(
+                              label: 'Open',
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const StudentSupportForm(),
+            ),
+          );
+        },
+        child: const Icon(Icons.message),
       ),
     );
   }

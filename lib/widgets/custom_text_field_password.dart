@@ -1,11 +1,13 @@
 import 'index.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFieldPassword extends StatelessWidget {
+  const CustomTextFieldPassword({
     Key? key,
     required TextEditingController controller,
     required String hintText,
     required String labelText,
+    required suffixIcon,
+    required obscureText,
     this.bottomLeft = 10,
     this.bottomRight = 20,
     this.minLines,
@@ -14,24 +16,26 @@ class CustomTextField extends StatelessWidget {
     this.topRight = 20,
     this.borderFocusColor = greenColor,
     this.onChanged,
-    this.obscureText = false,
     this.validator,
     this.prefix,
   })  : _controller = controller,
         _hintText = hintText,
+        _suffixIcon = suffixIcon,
         _labelText = labelText,
+        _obscureText = obscureText,
         super(key: key);
 
   final TextEditingController _controller;
   final String _hintText;
   final String _labelText;
+  final Widget _suffixIcon;
   final double topLeft;
   final double topRight;
   final double bottomLeft;
   final double bottomRight;
   final Color borderFocusColor;
   final Widget? prefix;
-  final bool obscureText;
+  final bool _obscureText;
   final int? minLines;
   final int? maxLines;
   final void Function(String)? onChanged;
@@ -40,14 +44,13 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: obscureText,
+      obscureText: _obscureText,
       controller: _controller,
       onChanged: onChanged,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      minLines: minLines,
-      maxLines: maxLines,
       validator: validator,
       decoration: InputDecoration(
+        suffixIcon: _suffixIcon,
         contentPadding: const EdgeInsets.all(10),
         label: Text(_labelText),
         hintText: _hintText,

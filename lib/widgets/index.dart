@@ -15,3 +15,5 @@ export 'ticket_button.dart';
 export '../index.dart';
 
 export 'ticket_dialog.dart';
+
+export 'custom_shader_mask.dart';

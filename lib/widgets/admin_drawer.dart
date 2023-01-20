@@ -11,7 +11,7 @@ class AdminDrawer extends StatelessWidget {
       backgroundColor: Colors.transparent,
       width: MediaQuery.of(context).size.width * 0.8,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: whiteColor,
         ),
         child: Column(
@@ -27,7 +27,7 @@ class AdminDrawer extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 40,
                         backgroundColor: greenColor.withOpacity(0.3),
-                        child: Icon(Icons.person_outlined)
+                        child: const Icon(Icons.person_outlined)
                       ),
                     ),
                   ),

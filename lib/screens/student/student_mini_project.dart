@@ -11,7 +11,7 @@ class StudentMiniProject extends StatefulWidget {
 class _StudentMiniProjectState extends State<StudentMiniProject> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(title: "Mini Project"),
     );
   }

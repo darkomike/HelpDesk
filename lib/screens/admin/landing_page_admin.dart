@@ -1,13 +1,13 @@
 import 'index.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
+class LandingPageAdmin extends StatefulWidget {
+  const LandingPageAdmin({super.key});
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<LandingPageAdmin> createState() => _LandingPageAdminState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _LandingPageAdminState extends State<LandingPageAdmin> {
   int _selectedIndex = 0;
 
   final List<Widget> _children = [
@@ -22,18 +22,16 @@ class _LandingPageState extends State<LandingPage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         final shouldPop = await showWarning(context);
         return shouldPop ?? false;
-      },child: Scaffold(
+      },
+      child: Scaffold(
         body: _children[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
-
           iconSize: 25,
           selectedFontSize: 16,
           unselectedFontSize: 14,

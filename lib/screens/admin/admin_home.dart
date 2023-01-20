@@ -76,7 +76,7 @@ class _AdminHomeState extends State<AdminHome> {
                   const Expanded(
                       flex: 6,
                       child: CustomText(
-                        textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                           label: "SUBJECTS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
@@ -84,7 +84,7 @@ class _AdminHomeState extends State<AdminHome> {
                   const Expanded(
                       flex: 3,
                       child: CustomText(
-                        textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                           label: "STATUS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
@@ -94,7 +94,7 @@ class _AdminHomeState extends State<AdminHome> {
                       child: CustomText(
                           label: "PRIORITY",
                           color: blackColor,
-                          textAlign: TextAlign.center, 
+                          textAlign: TextAlign.center,
                           fontWeight: FontWeight.bold)),
                   getSpaceW(width: 10),
                 ],
@@ -107,11 +107,11 @@ class _AdminHomeState extends State<AdminHome> {
             ),
             Flexible(
               child: ListView.separated(
-                separatorBuilder: (context, index) =>   Divider(
-            height: 5,
-            thickness: 1.1,
-            color: blackColor.withOpacity(0.4),
-          ),
+                separatorBuilder: (context, index) => Divider(
+                  height: 5,
+                  thickness: 1.1,
+                  color: blackColor.withOpacity(0.4),
+                ),
                 itemCount: 4,
                 itemBuilder: (BuildContext context, index) {
                   return TicketButton(

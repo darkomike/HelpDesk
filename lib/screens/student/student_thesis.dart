@@ -10,7 +10,7 @@ class StudentThesis extends StatefulWidget {
 class _StudentThesisState extends State<StudentThesis> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(title: "Thesis"),
     );
   }
