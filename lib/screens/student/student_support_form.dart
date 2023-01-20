@@ -79,20 +79,12 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Wrap(
-                                runSpacing: 5,
-                                spacing: 5,
-                                children: [
-                                  CustomText(
-                                    fontWeight: FontWeight.normal,
-                                    label: option,
-                                    overflow: TextOverflow.visible,
-                                  ),
-                                ],
+                              CustomText(
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                                label: option,
+                                overflow: TextOverflow.visible,
                               ),
-                              // const Divider(
-                              //   height: 5, thickness: 1.1,
-                              // )
                             ],
                           ),
                         ),
@@ -106,19 +98,28 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                   ),
                 ),
                 Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    child: RichText(
-                        text: const TextSpan(children: [
-                      TextSpan(
+                  margin: const EdgeInsets.only(top: 20,bottom: 10),
+                  child: RichText(
+                    text: const TextSpan(
+                      children: [
+                        TextSpan(
                           text: "Narrate the PROBLEM related to Exams.",
-                          style: TextStyle(color: blackColor, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: blackColor, fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(
-                              style: TextStyle(color: blackColor, fontStyle: FontStyle.italic, fontWeight: FontWeight.normal),
+                                style: TextStyle(
+                                    color: blackColor,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.normal),
                                 text:
                                     '(You may insert or paste a link to a file in your online drive to support complaint. Add course code & name where relevant). ')
-                          ])
-                    ]))),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 CustomTextField(
                   minLines: 5,
                   maxLines: 10,
@@ -127,23 +128,25 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                   labelText: '',
                 ),
                 getSpaceH(height: 10),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 15),
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(
-                          Icons.file_upload,
-                          color: blackColor,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10.0, bottom: 5),
-                          child: CustomText(label: 'Upload Document'),
-                        )
-                      ],
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          getSpaceH(height: 10),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(Icons.upload_file),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CustomText(label: 'Upload Document'),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

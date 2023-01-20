@@ -25,9 +25,10 @@ Widget ticketDetailsDialog({required BuildContext context}) {
             child: Text(
               'Ticket Details',
               style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 25,
-                  letterSpacing: 3),
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 25,
+                letterSpacing: 3,
+              ),
             ),
           ),
           Divider(

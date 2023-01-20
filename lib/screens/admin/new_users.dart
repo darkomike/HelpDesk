@@ -21,44 +21,46 @@ class _NewUsersState extends State<NewUsers> {
                   context: context,
                   builder: (context) {
                     return Dialog(
+                      backgroundColor: Colors.transparent,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(
-                                colors: [greenColor, greenColor])),
-                        child:
-                            Column(mainAxisSize: MainAxisSize.min, children: [
-                          const CustomText(
-                            label: "Confirm",
-                            fontWeight: FontWeight.w600,
-                          ),
-                          const Divider(
-                            height: 10,
-                            thickness: 2,
-                          ),
-                          const CustomText(
-                              textAlign: TextAlign.center,
-                              label: "Confirm addition of '2' Users?"),
-                          getSpaceH(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CustomElevatedButton(
+                          borderRadius: BorderRadius.circular(10),
+                          color: whiteColor.withOpacity(0.7),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const CustomText(
+                              label: "Confirm",
+                              fontWeight: FontWeight.w600,
+                            ),
+                            const Divider(
+                              height: 10,
+                              thickness: 2,
+                            ),
+                            const CustomText(
+                                textAlign: TextAlign.center,
+                                label: "Confirm addition of '2' Users?"),
+                            getSpaceH(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CustomElevatedButton(
                                   borderRadius: BorderRadius.circular(20),
-                                  gradient: const LinearGradient(colors: [
-                                    Colors.greenAccent,
-                                    Colors.teal
-                                  ]),
+                                  gradient: const LinearGradient(
+                                    colors: [Colors.greenAccent, Colors.teal],
+                                  ),
                                   onPressed: () {},
                                   child: const CustomText(
                                     label: "Yes",
                                     color: whiteColor,
-                                  )),
-                              CustomElevatedButton(
+                                  ),
+                                ),
+                                CustomElevatedButton(
                                   borderRadius: BorderRadius.circular(20),
                                   gradient: const LinearGradient(
                                       colors: [Colors.red, Colors.redAccent]),
@@ -68,10 +70,12 @@ class _NewUsersState extends State<NewUsers> {
                                   child: const CustomText(
                                     label: "No",
                                     color: whiteColor,
-                                  ))
-                            ],
-                          )
-                        ]),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -96,7 +100,10 @@ class _NewUsersState extends State<NewUsers> {
                         color: blackColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16)),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.sort))
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.sort),
+                )
               ],
             ),
             Divider(
@@ -110,25 +117,37 @@ class _NewUsersState extends State<NewUsers> {
                   children: [
                     getSpaceW(width: 10),
                     const Expanded(
-                        flex: 2,
-                        child: Text("UserID ",
-                            style: TextStyle(
-                                color: blackColor,
-                                fontWeight: FontWeight.bold))),
+                      flex: 2,
+                      child: Text(
+                        "UserID ",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     getSpaceW(width: 10),
                     const Expanded(
-                        flex: 2,
-                        child: Text("Username",
-                            style: TextStyle(
-                                color: blackColor,
-                                fontWeight: FontWeight.bold))),
+                      flex: 2,
+                      child: Text(
+                        "Username",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     getSpaceW(width: 10),
                     const Expanded(
-                        flex: 2,
-                        child: Text("Role",
-                            style: TextStyle(
-                                color: blackColor,
-                                fontWeight: FontWeight.bold))),
+                      flex: 2,
+                      child: Text(
+                        "Role",
+                        style: TextStyle(
+                          color: blackColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     const Expanded(child: SizedBox()),
                     getSpaceW(width: 10),
                   ],
@@ -151,15 +170,19 @@ class _NewUsersState extends State<NewUsers> {
                         context: context,
                         builder: (context) {
                           return Dialog(
+                            backgroundColor: Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: const LinearGradient(
-                                      colors: [greenColor, greenColor])),
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(
+                                  colors: [greenColor, greenColor],
+                                ),
+                              ),
                               child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [

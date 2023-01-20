@@ -156,24 +156,24 @@ class _StudentSupportState extends State<StudentSupport> {
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Expanded(
-                      flex: 3,
-                      child: CustomText(
-                          textAlign: TextAlign.center,
-                          label: "SUBJECT",
-                          color: blackColor,
-                          fontWeight: FontWeight.bold)),
-                  getSpaceW(width: 20),
-                  const Expanded(
-                      flex: 3,
-                      child: CustomText(
-                          textAlign: TextAlign.center,
-                          label: "STATUS",
-                          color: blackColor,
-                          fontWeight: FontWeight.bold)),
-                  getSpaceW(width: 10),
-                  getSpaceW(width: 10),
+                children: const [
+                  Expanded(
+                    flex: 4,
+                    child: CustomText(
+                      textAlign: TextAlign.center,
+                      label: "SUBJECT",
+                      color: blackColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: CustomText(
+                      label: "STATUS",
+                      color: blackColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -192,21 +192,27 @@ class _StudentSupportState extends State<StudentSupport> {
                 itemCount: 4,
                 itemBuilder: (BuildContext context, index) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      push(
+                        context: context,
+                        destination: const StudentTicketDetails(),
+                      );
+                    },
                     highlightColor: greenColor.withOpacity(0.3),
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Expanded(
+                        children: [
+                          const Expanded(
                             flex: 4,
                             child: CustomText(
                               label:
                                   'Great to have you onboard,The next step is crucial, yet simple! To see messages',
                             ),
                           ),
-                          Expanded(
+                          getSpaceW(width: 10),
+                          const Expanded(
                             flex: 2,
                             child: CustomText(
                               label: 'Open',

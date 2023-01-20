@@ -90,12 +90,13 @@ class _AdminHomeState extends State<AdminHome> {
                           fontWeight: FontWeight.bold)),
                   getSpaceW(width: 10),
                   const Expanded(
-                      flex: 4,
-                      child: CustomText(
-                          label: "PRIORITY",
-                          color: blackColor,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.bold)),
+                    flex: 4,
+                    child: CustomText(
+                        label: "PRIORITY",
+                        color: blackColor,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.bold),
+                  ),
                   getSpaceW(width: 10),
                 ],
               ),

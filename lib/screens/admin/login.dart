@@ -15,6 +15,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   String _text = 'Student';
+  String _textMsg = 'Not a Student?';
 
   bool _passwordObscure = true;
   bool _isLoading = false;
@@ -171,7 +172,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CustomText(
-                        label: 'Not $_text ?',
+                        label: _textMsg,
                         fontSize: 18,
                       ),
                       getSpaceW(width: 20),
@@ -194,18 +195,20 @@ class _LoginState extends State<Login> {
                                       onPressed: () {
                                         setState(() {
                                           _text = 'Admin';
+                                          _textMsg = 'Not an Admin?';
                                         });
                                         Navigator.pop(context);
                                       },
                                     ),
                                     TextButton(
                                       child: const CustomText(
-                                        label: 'Login as Lecturer',
+                                        label: 'Login as Lecturer?',
                                         fontSize: 18,
                                       ),
                                       onPressed: () {
                                         setState(() {
                                           _text = 'Lecturer';
+                                          _textMsg = 'Not a Lecturer?';
                                         });
                                         Navigator.pop(context);
                                       },
@@ -218,6 +221,7 @@ class _LoginState extends State<Login> {
                                       onPressed: () {
                                         setState(() {
                                           _text = 'Agent';
+                                          _textMsg = 'Not an Agent?';
                                         });
                                         Navigator.pop(context);
                                       },
@@ -230,6 +234,7 @@ class _LoginState extends State<Login> {
                                       onPressed: () {
                                         setState(() {
                                           _text = 'Student';
+                                          _textMsg = 'Not a Student?';
                                         });
                                         Navigator.pop(context);
                                       },
