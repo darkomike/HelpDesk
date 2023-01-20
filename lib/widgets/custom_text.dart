@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
     this.fontSize = 16,
     this.overflow = TextOverflow.ellipsis,
     this.textAlign,
-    this.letterSpacing = 2,
+    this.letterSpacing = 1,
     this.fontWeight = FontWeight.w500,
   }) : super(key: key);
 
@@ -26,6 +26,7 @@ class CustomText extends StatelessWidget {
       overflow: overflow,
       textAlign: textAlign,
       style: TextStyle(
+        height: 1.5,
           color: color,
           fontSize: fontSize,
           fontWeight: fontWeight,
