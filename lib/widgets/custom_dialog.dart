@@ -13,13 +13,13 @@ class CustomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: whiteColor,
+      backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: whiteColor.withOpacity(0.5),
+          color: whiteColor.withOpacity(0.7),
         ),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           CustomText(

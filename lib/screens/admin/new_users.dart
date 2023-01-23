@@ -179,9 +179,7 @@ class _NewUsersState extends State<NewUsers> {
                                   horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(
-                                  colors: [greenColor, greenColor],
-                                ),
+                                color: whiteColor.withOpacity(0.7),
                               ),
                               child: Column(
                                   mainAxisSize: MainAxisSize.min,
