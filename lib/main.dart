@@ -7,8 +7,10 @@ void main() async {
   SharedPreferencesHelper().getValue(key: isLoggedInKey) ??
       SharedPreferencesHelper().saveValue(key: isLoggedInKey, value: false);
 
-      SharedPreferencesHelper().getValue(key: userRole) ??
-  SharedPreferencesHelper().saveValue(key: userRole, value: 'Admin');
+  SharedPreferencesHelper().saveValue(
+    key: userRole,
+    value: SharedPreferencesHelper().getValue(key: userRole) ?? 'Admin',
+  );
 
   runApp(
     MultiProvider(
@@ -34,7 +36,9 @@ class CsHelpDeskApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: SharedPreferencesHelper().getValue(key: isLoggedInKey)
-          ? checkUserLoginMode(userRole: Provider.of<UserState>(context).userRolee)
+          ? checkUserLoginMode(
+              userRole: Provider.of<UserState>(context).userRolee,
+            )
           : const Login(),
     );
   }
