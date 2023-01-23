@@ -6,7 +6,7 @@ class UserState with ChangeNotifier {
   String get userRolee => _userRole;
 
    setUserRole({required String value}) {
-    SharedPreferencesHelper().saveValue(value: value, key: userRolee);
+    SharedPreferencesHelper().saveValue(value: value, key: userRole);
 
     _userRole = value;
     notifyListeners();

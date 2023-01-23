@@ -28,6 +28,8 @@ class CsHelpDeskApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("User Role Provider: ${Provider.of<UserState>(context).userRolee}");
+    debugPrint("User Role SharedPrefer: ${SharedPreferencesHelper().getValue(key: userRole)}");
     return MaterialApp(
       title: 'CS Help Desk',
       debugShowCheckedModeBanner: false,
@@ -37,7 +39,7 @@ class CsHelpDeskApp extends StatelessWidget {
       ),
       home: SharedPreferencesHelper().getValue(key: isLoggedInKey)
           ? checkUserLoginMode(
-              userRole: Provider.of<UserState>(context).userRolee,
+              userRole: SharedPreferencesHelper().getValue(key: userRole),
             )
           : const Login(),
     );

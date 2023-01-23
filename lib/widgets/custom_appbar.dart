@@ -9,10 +9,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           height: 1,
           thickness: 1.5,
           color: greenColor,
-          indent: 40,
-          endIndent: 40,
+          indent: 45,
+          endIndent: 45,
         )),
-    required this.title,
+    required this.title, this.height=60,
     this.leading,
     this.backgroundColor = whiteColor,
     this.actions,
@@ -23,9 +23,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final String title;
   final Widget? leading;
+  final double height;
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize =>  Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {

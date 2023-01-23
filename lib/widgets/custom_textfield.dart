@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.topLeft = 5,
-    this.topRight = 20,
+    this.topRight = 20, this.suffixIcon,
     this.borderFocusColor = greenColor,
     this.onChanged,
     this.obscureText = false,
@@ -36,6 +36,7 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,7 @@ class CustomTextField extends StatelessWidget {
         label: Text(_labelText),
         hintText: _hintText,
         prefixIcon: prefix,
+        suffixIcon: suffixIcon,
         border: OutlineInputBorder(
             borderSide: const BorderSide(width: 1, color: blackColor),
             borderRadius: BorderRadius.only(
