@@ -15,9 +15,6 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String _textMsg =
-      'Not a ${SharedPreferencesHelper().getValue(key: userRole)}?';
-
   bool _passwordObscure = true;
   bool _isLoading = false;
 
@@ -93,14 +90,15 @@ class _LoginState extends State<Login> {
                       setState(() {
                         _isLoading = true;
                       });
-                      switch (Provider.of<UserState>(context, listen: false).userRolee) {
-                        case "Student":                          
+                      switch (Provider.of<UserState>(context, listen: false)
+                          .userRolee) {
+                        case "Student":
                           getDelayed(
                             duration: 3,
                             callback: () {
-                               Provider.of<AppState>(context, listen: false)
-                              .setIsUserLoggedIn(value: true);
-                        
+                              Provider.of<AppState>(context, listen: false)
+                                  .setIsUserLoggedIn(value: true);
+
                               pushReplace(
                                 context: context,
                                 destination: const LandingPageStudent(),
@@ -108,12 +106,12 @@ class _LoginState extends State<Login> {
                             },
                           );
                           break;
-                        case "Admin":                         
+                        case "Admin":
                           getDelayed(
                               duration: 3,
                               callback: () {
-                                 Provider.of<AppState>(context, listen: false)
-                              .setIsUserLoggedIn(value: true);                        
+                                Provider.of<AppState>(context, listen: false)
+                                    .setIsUserLoggedIn(value: true);
                                 pushReplace(
                                   context: context,
                                   destination: const LandingPageAdmin(),
@@ -121,7 +119,6 @@ class _LoginState extends State<Login> {
                               });
                           break;
                         case "Lecturer":
-                        
                           setState(() {
                             _isLoading = false;
                           });
@@ -186,7 +183,10 @@ class _LoginState extends State<Login> {
                       ),
                       getSpaceW(width: 20),
                       TextButton(
-                        child: const CustomText(label: "Change Role", color: greenColor,),
+                        child: const CustomText(
+                          label: "Change Role",
+                          color: greenColor,
+                        ),
                         onPressed: () {
                           // display bottom sheet
                           showModalBottomSheet(
@@ -223,7 +223,6 @@ class _LoginState extends State<Login> {
                                           Provider.of<UserState>(context,
                                                   listen: false)
                                               .setUserRole(value: 'Lecturer');
-                                          _textMsg = 'Not a Lecturer?';
                                         });
                                         Navigator.pop(context);
                                       },
@@ -238,7 +237,6 @@ class _LoginState extends State<Login> {
                                           Provider.of<UserState>(context,
                                                   listen: false)
                                               .setUserRole(value: 'Agent');
-                                          _textMsg = 'Not an Agent?';
                                         });
                                         Navigator.pop(context);
                                       },
@@ -253,7 +251,6 @@ class _LoginState extends State<Login> {
                                           Provider.of<UserState>(context,
                                                   listen: false)
                                               .setUserRole(value: 'Student');
-                                          _textMsg = 'Not a Student?';
                                         });
                                         Navigator.pop(context);
                                       },

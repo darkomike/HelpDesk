@@ -4,7 +4,6 @@ export 'main.dart';
 export 'constants/index.dart';
 export 'screens/index.dart';
 export 'utils/index.dart';
-import  "package:intl/intl.dart";
 
 export 'state/index.dart';
 export 'models/index.dart';

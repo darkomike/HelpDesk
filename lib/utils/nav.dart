@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:helpdesk/state/index.dart';
-import 'package:helpdesk/widgets/custom_page_route.dart';
+import 'index.dart';
 
 Size getSize(BuildContext context) {
   return MediaQuery.of(context).size;

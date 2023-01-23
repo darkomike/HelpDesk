@@ -203,7 +203,7 @@ class DontTouchItLol extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
-          children: [
+          children: const [
             CustomText( label: "4 Tickets")
           ],
         ),
@@ -213,7 +213,7 @@ class DontTouchItLol extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemCount: 6,
               itemBuilder: (context, index) {
-                return ExpansionTile(
+                return const ExpansionTile(
                   
                   title: CustomText(label: dummyText),
                   
@@ -352,7 +352,7 @@ class NoSupportTicket extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomText(
+          const CustomText(
               label: 'No Ticket Available',
               fontSize: 20,
               fontWeight: FontWeight.bold),
@@ -361,11 +361,11 @@ class NoSupportTicket extends StatelessWidget {
             onPressed: () {
               push(context: context, destination: const StudentSupportForm());
             },
-            child: CustomText(
+            borderRadius: BorderRadius.circular(10),
+            child: const CustomText(
               label: "Create Ticket",
               color: whiteColor,
             ),
-            borderRadius: BorderRadius.circular(10),
           )
         ],
       ),
