@@ -28,7 +28,7 @@ class _LandingPageStudentState extends State<LandingPageStudent> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final shouldPop = await showWarning(context);
+        final shouldPop = await showWarning(context, "Do you want to exit app?");
         return shouldPop ?? false;
       },child: Scaffold(
         body: _children[_selectedIndex],

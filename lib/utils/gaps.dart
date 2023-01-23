@@ -18,13 +18,14 @@ getDelayed({required int duration, required VoidCallback callback}) async {
     return Timer(Duration(seconds: duration), callback);
   }
 
- 
-  Future<bool?> showWarning(BuildContext context) async => showDialog(
+
+  Future<bool?> showWarning(BuildContext context, String title) async => showDialog(
       context: context,
       builder: (context) => AlertDialog(
             backgroundColor: whiteColor,
-            title: const CustomText(
-              label: "Do you want to exit app?",
+            title:  CustomText(
+              overflow: TextOverflow.visible,
+              label: title,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

@@ -17,7 +17,9 @@ class _CreateUserState extends State<CreateUser> {
       appBar: const CustomAppBar(
         title: "Create User",
         backgroundColor: whiteColor,
+        
       ),
+      
       body: Center(
           child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

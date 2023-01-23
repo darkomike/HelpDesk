@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helpdesk/state/index.dart';
 import 'package:helpdesk/widgets/custom_page_route.dart';
 
 Size getSize(BuildContext context) {
@@ -26,10 +27,21 @@ push({
   );
 }
 
-getImagePathPng({required String name}) {
-  return "assets/images/$name.png";
-}
+checkUserLoginMode({required String userRole}) {
+  switch (userRole) {
+    case 'Admin':
+      return const LandingPageAdmin();
 
-getImagePathJpg({required String name}) {
-  return "assets/images/$name.jpg";
+    case 'Student':
+      return const LandingPageStudent();
+
+    case 'Agent':
+      return const LandingPageStudent();
+
+    case 'Lecturer':
+      return const LandingPageStudent();
+
+    default:
+      return const LandingPageStudent();
+  }
 }

@@ -26,7 +26,7 @@ class _LandingPageAdminState extends State<LandingPageAdmin> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final shouldPop = await showWarning(context);
+        final shouldPop = await showWarning(context, "Do you want to exit app?");
         return shouldPop ?? false;
       },
       child: Scaffold(

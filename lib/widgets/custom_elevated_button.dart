@@ -6,13 +6,14 @@ class CustomElevatedButton extends StatelessWidget {
   final double height;
   final Gradient gradient;
   final VoidCallback? onPressed;
+  final double elevation;
   final Widget child;
 
   const CustomElevatedButton({
     Key? key,
     required this.onPressed,
     required this.child,
-    this.borderRadius,
+    this.borderRadius, this.elevation = 5,
     this.width,
     this.height = 44.0,
     this.gradient = const LinearGradient(colors: bgColorGradient),
@@ -36,7 +37,7 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          elevation: 5,
+          elevation: elevation,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
         ),

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:helpdesk/utils/files_utils.dart';
+
 import 'index.dart';
 
 class BatchUpload extends StatefulWidget {
@@ -8,8 +12,13 @@ class BatchUpload extends StatefulWidget {
 }
 
 class _BatchUploadState extends State<BatchUpload> {
+  PlatformFile? _attachFile;
+  String _filename = "filename.exe";
+
   @override
   Widget build(BuildContext context) {
+    stdout.writeln("This is a message");
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Batch Upload",
@@ -20,7 +29,25 @@ class _BatchUploadState extends State<BatchUpload> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              pickAnyFile().then((value) {
+                _attachFile = value!.files.first;
+                readFileContent(path: _attachFile!.path!).then((value) {
+
+                  List<List<dynamic>> rows = const CsvToListConverter().convert(value);
+                  List<Map> jsonData = rows.map((row) => Map.fromIterables(rows[0], row)).toList();
+                  debugPrint(json.encode(jsonData));
+
+
+                });
+                debugPrint("Attach file ${readFileContent(path: _attachFile!.path!)}");
+                setState(() {
+                  _filename =
+                      "${shortenPath(value: _attachFile!.name)}${_attachFile!.extension!}";
+                });
+              });
+
+            },
             child: Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -32,7 +59,7 @@ class _BatchUploadState extends State<BatchUpload> {
                 children: [
                   const Icon(Icons.file_present),
                   getSpaceH(height: 10),
-                  const CustomText(label: "filename.exe")
+                  CustomText(label: _filename)
                 ],
               ),
             ),

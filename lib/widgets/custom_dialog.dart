@@ -13,7 +13,7 @@ class CustomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.transparent,
+      backgroundColor: whiteColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -28,7 +28,8 @@ class CustomDialog extends StatelessWidget {
           ),
           const Divider(
             height: 20,
-            thickness: 2,
+            color: greenColor,
+            thickness: 1.5,
           ),
           body
         ]),

@@ -1,3 +1,4 @@
+import 'package:helpdesk/state/index.dart';
 import 'package:helpdesk/widgets/custom_text_field_password.dart';
 
 import 'index.dart';
@@ -14,8 +15,8 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String _text = 'Student';
-  String _textMsg = 'Not a Student?';
+  String _textMsg =
+      'Not a ${SharedPreferencesHelper().getValue(key: userRole)}?';
 
   bool _passwordObscure = true;
   bool _isLoading = false;
@@ -39,7 +40,8 @@ class _LoginState extends State<Login> {
               children: [
                 getSpaceH(height: 20),
                 CustomText(
-                  label: "Welcome Back \n$_text",
+                  label:
+                      "Welcome Back \n${Provider.of<UserState>(context).userRolee}",
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   textAlign: TextAlign.center,
@@ -91,11 +93,14 @@ class _LoginState extends State<Login> {
                       setState(() {
                         _isLoading = true;
                       });
-                      switch (_text) {
-                        case "Student":
+                      switch (Provider.of<UserState>(context, listen: false).userRolee) {
+                        case "Student":                          
                           getDelayed(
                             duration: 3,
                             callback: () {
+                               Provider.of<AppState>(context, listen: false)
+                              .setIsUserLoggedIn(value: true);
+                        
                               pushReplace(
                                 context: context,
                                 destination: const LandingPageStudent(),
@@ -103,10 +108,12 @@ class _LoginState extends State<Login> {
                             },
                           );
                           break;
-                        case "Admin":
+                        case "Admin":                         
                           getDelayed(
                               duration: 3,
                               callback: () {
+                                 Provider.of<AppState>(context, listen: false)
+                              .setIsUserLoggedIn(value: true);                        
                                 pushReplace(
                                   context: context,
                                   destination: const LandingPageAdmin(),
@@ -114,6 +121,7 @@ class _LoginState extends State<Login> {
                               });
                           break;
                         case "Lecturer":
+                        
                           setState(() {
                             _isLoading = false;
                           });
@@ -172,15 +180,20 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CustomText(
-                        label: _textMsg,
+                        label:
+                            "Not a ${Provider.of<UserState>(context).userRolee}",
                         fontSize: 18,
                       ),
                       getSpaceW(width: 20),
                       TextButton(
-                        child: const Text('Change Login'),
+                        child: const CustomText(label: "Change Role", color: greenColor,),
                         onPressed: () {
                           // display bottom sheet
                           showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10))),
                             context: context,
                             builder: (context) {
                               return SizedBox(
@@ -193,21 +206,23 @@ class _LoginState extends State<Login> {
                                         fontSize: 18,
                                       ),
                                       onPressed: () {
-                                        setState(() {
-                                          _text = 'Admin';
-                                          _textMsg = 'Not an Admin?';
-                                        });
+                                        Provider.of<UserState>(context,
+                                                listen: false)
+                                            .setUserRole(value: 'Admin');
+
                                         Navigator.pop(context);
                                       },
                                     ),
                                     TextButton(
                                       child: const CustomText(
-                                        label: 'Login as Lecturer?',
+                                        label: 'Login as Lecturer',
                                         fontSize: 18,
                                       ),
                                       onPressed: () {
                                         setState(() {
-                                          _text = 'Lecturer';
+                                          Provider.of<UserState>(context,
+                                                  listen: false)
+                                              .setUserRole(value: 'Lecturer');
                                           _textMsg = 'Not a Lecturer?';
                                         });
                                         Navigator.pop(context);
@@ -220,7 +235,9 @@ class _LoginState extends State<Login> {
                                       ),
                                       onPressed: () {
                                         setState(() {
-                                          _text = 'Agent';
+                                          Provider.of<UserState>(context,
+                                                  listen: false)
+                                              .setUserRole(value: 'Agent');
                                           _textMsg = 'Not an Agent?';
                                         });
                                         Navigator.pop(context);
@@ -233,7 +250,9 @@ class _LoginState extends State<Login> {
                                       ),
                                       onPressed: () {
                                         setState(() {
-                                          _text = 'Student';
+                                          Provider.of<UserState>(context,
+                                                  listen: false)
+                                              .setUserRole(value: 'Student');
                                           _textMsg = 'Not a Student?';
                                         });
                                         Navigator.pop(context);

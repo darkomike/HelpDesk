@@ -1,3 +1,5 @@
+import 'package:helpdesk/state/index.dart';
+
 import 'index.dart';
 
 class AdminHome extends StatefulWidget {
@@ -10,6 +12,8 @@ class AdminHome extends StatefulWidget {
 class _AdminHomeState extends State<AdminHome> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchTicket = TextEditingController();
+  String textLabel = "Sign Out";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +31,148 @@ class _AdminHomeState extends State<AdminHome> {
         ),
         title: "All Tickets",
         backgroundColor: whiteColor,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              backgroundColor: greenColor.withOpacity(0.2),
+              child: CustomShaderMask(
+                gradient: const LinearGradient(colors: bgColorGradient),
+                blendMode: BlendMode.srcIn,
+                child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => StatefulBuilder(
+                                builder: (context, setState) {
+                                  return CustomDialog(
+                                    body: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Card(
+                                            color: whiteColor.withOpacity(.4),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: const [
+                                                  CustomText(label: "UserID: "),
+                                                  CustomText(label: "E90FSO"),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Card(
+                                            color: whiteColor.withOpacity(.4),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: const [
+                                                  CustomText(
+                                                      label: "Username: "),
+                                                  CustomText(
+                                                      label: "Kwame Antwi"),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Card(
+                                            color: whiteColor.withOpacity(.4),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: const [
+                                                  CustomText(
+                                                      label: "Telephone: "),
+                                                  CustomText(
+                                                      label: "0551167889"),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Card(
+                                            color: whiteColor.withOpacity(.4),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: const [
+                                                  CustomText(label: "Email: "),
+                                                  CustomText(
+                                                      label:
+                                                          "kwantwi@gmail.com"),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          getSpaceH(height: 10),
+                                          CustomElevatedButton(
+                                              width: double.infinity,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              onPressed: () {
+                                                setState(
+                                                  () {
+                                                    textLabel = "Signing Out";
+                                                  },
+                                                );
+                                                getDelayed(
+                                                    duration: 3,
+                                                    callback: () {
+                                                      Provider.of<AppState>(
+                                                              context,
+                                                              listen: false)
+                                                          .setIsUserLoggedIn(
+                                                              value: false);
+                                                      Navigator.pop(context);
+                                                      pushReplace(
+                                                          context: context,
+                                                          destination:
+                                                              const Login());
+                                                    });
+                                              },
+                                              child: CustomText(
+                                                color: whiteColor,
+                                                label: textLabel,
+                                              ))
+                                        ]),
+                                    title: Provider.of<UserState>(context)
+                                        .userRolee,
+                                  );
+                                },
+                              ));
+                    },
+                    icon: const Icon(Icons.person)),
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
