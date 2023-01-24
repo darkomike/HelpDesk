@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'index.dart';
 
 class CSHelpDeskFirebaseAuth {
-  static FirebaseAuth _auth = FirebaseAuth.instance;
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
 
   static createUser({required String email, required String password}) async {
     try {
@@ -29,13 +31,12 @@ class CSHelpDeskFirebaseAuth {
     }
   }
 
-
-void resetPassword({required String email}) async {
-  try {
-    await _auth.sendPasswordResetEmail(email: email);
-    print('Password reset email sent to $email');
-  } catch (e) {
-    print(e.toString());
+  void resetPassword({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      print('Password reset email sent to $email');
+    } catch (e) {
+      print(e.toString());
+    }
   }
-}
 }
