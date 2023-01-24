@@ -1,7 +1,10 @@
+
 import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+
   await SharedPreferencesHelper().init();
 
   SharedPreferencesHelper().getValue(key: isLoggedInKey) ??

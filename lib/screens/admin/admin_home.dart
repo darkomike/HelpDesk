@@ -13,6 +13,7 @@ class _AdminHomeState extends State<AdminHome> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchTicket = TextEditingController();
   String textLabel = "Sign Out";
+  List<Color> _buttonColor = greenColorGradient;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _AdminHomeState extends State<AdminHome> {
             child: CircleAvatar(
               backgroundColor: greenColor.withOpacity(0.2),
               child: CustomShaderMask(
-                gradient: const LinearGradient(colors: bgColorGradient),
+                gradient: const LinearGradient(colors: greenColorGradient),
                 blendMode: BlendMode.srcIn,
                 child: IconButton(
                     onPressed: () {
@@ -134,12 +135,16 @@ class _AdminHomeState extends State<AdminHome> {
                                           getSpaceH(height: 10),
                                           CustomElevatedButton(
                                               width: double.infinity,
+                                              gradient: LinearGradient(
+                                                  colors: _buttonColor),
                                               borderRadius:
                                                   BorderRadius.circular(20),
                                               onPressed: () {
                                                 setState(
                                                   () {
                                                     textLabel = "Signing Out";
+                                                    _buttonColor =
+                                                        redColorGradient;
                                                   },
                                                 );
                                                 getDelayed(

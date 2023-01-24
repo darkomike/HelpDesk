@@ -107,16 +107,32 @@ class _LoginState extends State<Login> {
                           );
                           break;
                         case "Admin":
-                          getDelayed(
-                              duration: 3,
-                              callback: () {
-                                Provider.of<AppState>(context, listen: false)
+                          CSHelpDeskFirebaseAuth.signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then(
+                            (value) {
+                              debugPrint("Sign In Error: ${value.user!.email}");
+                               Provider.of<AppState>(context, listen: false)
                                     .setIsUserLoggedIn(value: true);
                                 pushReplace(
                                   context: context,
                                   destination: const LandingPageAdmin(),
                                 );
-                              });
+                            },
+                          ).catchError((onError) {
+                            debugPrint("Sign In Error: $onError");
+                          });
+                          // getDelayed(
+                          //     duration: 3,
+                          //     callback: () {
+                          //       Provider.of<AppState>(context, listen: false)
+                          //           .setIsUserLoggedIn(value: true);
+                          //       pushReplace(
+                          //         context: context,
+                          //         destination: const LandingPageAdmin(),
+                          //       );
+                          //     });
                           break;
                         case "Lecturer":
                           setState(() {

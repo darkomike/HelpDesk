@@ -25,7 +25,7 @@ class _TicketDetailState extends State<TicketDetail> {
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: CustomShaderMask(
-              gradient: const LinearGradient(colors: bgColorGradient),
+              gradient: const LinearGradient(colors: greenColorGradient),
               blendMode: BlendMode.srcIn,
               child: IconButton(
                 iconSize: 24,
@@ -74,8 +74,7 @@ class _TicketDetailState extends State<TicketDetail> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     CustomText(label: "HelpDesk"),
-                    CustomText(label: "Wed, 11 Jan 2023, 03:43 pm"
-                    )
+                    CustomText(label: "Wed, 11 Jan 2023, 03:43 pm")
                   ],
                 ),
               ),
@@ -225,9 +224,8 @@ class _TicketDetailState extends State<TicketDetail> {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomTextField(
-              suffixIcon: IconButton(onPressed: () {
-                
-              }, icon: const Icon(Icons.send)),
+              suffixIcon:
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
               minLines: 3,
               maxLines: 7,
               controller: _message,

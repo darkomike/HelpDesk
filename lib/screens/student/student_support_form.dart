@@ -426,7 +426,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                                     Expanded(
                                       child: CustomElevatedButton(
                                           gradient: const LinearGradient(
-                                              colors: bgColorGradient),
+                                              colors: greenColorGradient),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           onPressed: () {

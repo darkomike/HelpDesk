@@ -13,10 +13,11 @@ class CustomElevatedButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.child,
-    this.borderRadius, this.elevation = 5,
+    this.borderRadius,
+    this.elevation = 5,
     this.width,
     this.height = 44.0,
-    this.gradient = const LinearGradient(colors: bgColorGradient),
+    this.gradient = const LinearGradient(colors: greenColorGradient),
   }) : super(key: key);
 
   @override

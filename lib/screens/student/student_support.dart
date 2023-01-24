@@ -21,7 +21,7 @@ class _StudentSupportState extends State<StudentSupport> {
             child: CircleAvatar(
               backgroundColor: greenColor.withOpacity(0.2),
               child: CustomShaderMask(
-                gradient: const LinearGradient(colors: bgColorGradient),
+                gradient: const LinearGradient(colors: greenColorGradient),
                 blendMode: BlendMode.srcIn,
                 child: IconButton(
                     onPressed: () {
@@ -169,10 +169,8 @@ class _StudentSupportState extends State<StudentSupport> {
           setState(() {});
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 5 , vertical: 10),
-          child: 1 == 1
-              ? const NoSupportTicket()
-              : const SupportBody(),
+          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+          child: 1 == 1 ? const NoSupportTicket() : const SupportBody(),
         ),
       ),
       floatingActionButton: 1 == 1
@@ -203,27 +201,21 @@ class DontTouchItLol extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
-          children: const [
-            CustomText( label: "4 Tickets")
-          ],
+          children: const [CustomText(label: "4 Tickets")],
         ),
         Flexible(
           child: ListView.builder(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemCount: 6,
-              itemBuilder: (context, index) {
-                return const ExpansionTile(
-                  
-                  title: CustomText(label: dummyText),
-                  
-                  initiallyExpanded: true,
-                  children: [
-                    
-                  ],
-                  );
-              },
-            ),
+            itemBuilder: (context, index) {
+              return const ExpansionTile(
+                title: CustomText(label: dummyText),
+                initiallyExpanded: true,
+                children: [],
+              );
+            },
+          ),
         ),
       ],
     );
