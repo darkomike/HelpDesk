@@ -112,13 +112,13 @@ class _LoginState extends State<Login> {
                                   password: _passwordController.text)
                               .then(
                             (value) {
-                              debugPrint("Sign In Error: ${value.user!.email}");
-                               Provider.of<AppState>(context, listen: false)
-                                    .setIsUserLoggedIn(value: true);
-                                pushReplace(
-                                  context: context,
-                                  destination: const LandingPageAdmin(),
-                                );
+                              debugPrint("Sign In: ${value.user!.email}");
+                              Provider.of<AppState>(context, listen: false)
+                                  .setIsUserLoggedIn(value: true);
+                              pushReplace(
+                                context: context,
+                                destination: const LandingPageAdmin(),
+                              );
                             },
                           ).catchError((onError) {
                             debugPrint("Sign In Error: $onError");

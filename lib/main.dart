@@ -1,10 +1,10 @@
-
 import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedPreferencesHelper().init();
 
   SharedPreferencesHelper().getValue(key: isLoggedInKey) ??
@@ -31,8 +31,10 @@ class CsHelpDeskApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("User Role Provider: ${Provider.of<UserState>(context).userRolee}");
-    debugPrint("User Role SharedPrefer: ${SharedPreferencesHelper().getValue(key: userRole)}");
+    debugPrint(
+        "User Role Provider: ${Provider.of<UserState>(context).userRolee}");
+    debugPrint(
+        "User Role SharedPrefer: ${SharedPreferencesHelper().getValue(key: userRole)}");
     return MaterialApp(
       title: 'CS Help Desk',
       debugShowCheckedModeBanner: false,
