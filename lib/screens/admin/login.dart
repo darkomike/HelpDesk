@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
 
   bool _passwordObscure = true;
   bool _isLoading = false;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class _LoginState extends State<Login> {
                   validator: (value) {
                     return value!.isEmpty ? "Invalid Input" : null;
                   },
-                  labelText: 'User ID',
+                  labelText: 'Email',
                 ),
                 getSpaceH(height: 20),
                 CustomTextFieldPassword(
@@ -84,6 +85,7 @@ class _LoginState extends State<Login> {
                 CustomElevatedButton(
                   width: double.infinity,
                   height: 50,
+                  
                   borderRadius: BorderRadius.circular(20),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -93,18 +95,61 @@ class _LoginState extends State<Login> {
                       switch (Provider.of<UserState>(context, listen: false)
                           .userRolee) {
                         case "Student":
-                          getDelayed(
-                            duration: 3,
-                            callback: () {
-                              Provider.of<AppState>(context, listen: false)
-                                  .setIsUserLoggedIn(value: true);
+                          CSHelpDeskFirebaseAuth.signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then(
+                            (value) {
+                              debugPrint("Sign In: ${value.user!.uid}");
 
-                              pushReplace(
-                                context: context,
-                                destination: const LandingPageStudent(),
-                              );
+                              FirestoreService.checkUserRole(
+                                  userID: value.user!.uid,
+                                  collection: 'students',
+                                  context: context,
+                                  widget: const LandingPageStudent());
                             },
-                          );
+                          ).catchError((onError) {
+                            debugPrint("Sign In Error: $onError");
+                            showDialog(
+                              context: context,
+                              builder: (context) => CustomDialog(
+                                  dividerColor: redColor,
+                                  body: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CustomText(
+                                          label: "${onError.message}",
+                                          overflow: TextOverflow.visible),
+                                      getSpaceH(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                                side: const BorderSide(
+                                                    color: redColor),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10))),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child:
+                                                const CustomText(label: "OK"),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  title: 'Something went wrong'),
+                            );
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          });
+
                           break;
                         case "Admin":
                           CSHelpDeskFirebaseAuth.signIn(
@@ -112,59 +157,214 @@ class _LoginState extends State<Login> {
                                   password: _passwordController.text)
                               .then(
                             (value) {
-                              debugPrint("Sign In: ${value.user!.email}");
-                              Provider.of<AppState>(context, listen: false)
-                                  .setIsUserLoggedIn(value: true);
-                              pushReplace(
-                                context: context,
-                                destination: const LandingPageAdmin(),
-                              );
+                              debugPrint("Sign In: ${value.user!.uid}");
+
+                              FirestoreService.checkUserRole(
+                                  userID: value.user!.uid,
+                                  collection: 'admin',
+                                  context: context,
+                                  widget: const LandingPageAdmin());
                             },
                           ).catchError((onError) {
                             debugPrint("Sign In Error: $onError");
+                            showDialog(
+                              context: context,
+                              builder: (context) => CustomDialog(
+                                  dividerColor: redColor,
+                                  body: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CustomText(
+                                          label: "${onError.message}",
+                                          overflow: TextOverflow.visible),
+                                      getSpaceH(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                                side: const BorderSide(
+                                                    color: redColor),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10))),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child:
+                                                const CustomText(label: "OK"),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  title: 'Something went wrong'),
+                            );
+                            setState(() {
+                              _isLoading = false;
+                            });
                           });
-                          // getDelayed(
-                          //     duration: 3,
-                          //     callback: () {
-                          //       Provider.of<AppState>(context, listen: false)
-                          //           .setIsUserLoggedIn(value: true);
-                          //       pushReplace(
-                          //         context: context,
-                          //         destination: const LandingPageAdmin(),
-                          //       );
-                          //     });
                           break;
                         case "Lecturer":
-                          setState(() {
-                            _isLoading = false;
+                          CSHelpDeskFirebaseAuth.signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then(
+                            (value) {
+                              debugPrint("Sign In: ${value.user!.uid}");
+
+                              FirestoreService.checkUserRole(
+                                  userID: value.user!.uid,
+                                  collection: 'lecturers',
+                                  context: context,
+                                  widget: const LandingPageAdmin());
+                            },
+                          ).catchError((onError) {
+                            debugPrint("Sign In Error: $onError");
+                            showDialog(
+                              context: context,
+                              builder: (context) => CustomDialog(
+                                  dividerColor: redColor,
+                                  body: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CustomText(
+                                          label: "${onError.message}",
+                                          overflow: TextOverflow.visible),
+                                      getSpaceH(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                                side: const BorderSide(
+                                                    color: redColor),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10))),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child:
+                                                const CustomText(label: "OK"),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  title: 'Something went wrong'),
+                            );
+                            setState(() {
+                              _isLoading = false;
+                            });
                           });
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: CustomText(
-                              label: 'Coming Soon ...',
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ));
+
                           break;
                         case "Agent":
+                          CSHelpDeskFirebaseAuth.signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then(
+                            (value) {
+                              debugPrint("Sign In: ${value.user!.uid}");
+
+                              FirestoreService.checkUserRole(
+                                  userID: value.user!.uid,
+                                  collection: 'agents',
+                                  context: context,
+                                  widget: const LandingPageAdmin());
+                            },
+                          ).catchError((onError) {
+                            debugPrint("Sign In Error: $onError");
+                            showDialog(
+                              context: context,
+                              builder: (context) => CustomDialog(
+                                  dividerColor: redColor,
+                                  body: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CustomText(
+                                          label: "${onError.message}",
+                                          overflow: TextOverflow.visible),
+                                      getSpaceH(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                                side: const BorderSide(
+                                                    color: redColor),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10))),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child:
+                                                const CustomText(label: "OK"),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  title: 'Something went wrong'),
+                            );
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          });
+
+                          break;
+                        default:
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomDialog(
+                                dividerColor: redColor,
+                                body: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const CustomText(
+                                        label:
+                                            "Oops Something wrong. Please check your internet connection and try again",
+                                        overflow: TextOverflow.visible),
+                                    getSpaceH(height: 10),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(
+                                              side: const BorderSide(
+                                                  color: redColor),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10))),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const CustomText(label: "OK"),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                title: 'Something went wrong'),
+                          );
                           setState(() {
                             _isLoading = false;
                           });
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: CustomText(
-                              label: 'Coming Soon ...',
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ));
-                          break;
-                        default:
+
                           break;
                       }
                     }
                   },
+                  gradient: LinearGradient(colors: !_isLoading ? getBackgroundGradientOpacity(opacity: 1) :  getBackgroundGradientOpacity(opacity: 1, color: Colors.blue)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

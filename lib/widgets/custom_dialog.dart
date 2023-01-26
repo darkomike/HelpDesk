@@ -5,10 +5,12 @@ class CustomDialog extends StatelessWidget {
     Key? key,
     required this.body,
     required this.title,
+    this.dividerColor = greenColor,
   }) : super(key: key);
 
   final Widget body;
   final String title;
+  final Color dividerColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,17 @@ class CustomDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: whiteColor.withOpacity(0.7),
         ),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
+        child: Column(
+          mainAxisSize: MainAxisSize.min, 
+          children: [
           CustomText(
             label: title,
-            fontWeight: FontWeight.w800, fontSize: 20,
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
           ),
-          const Divider(
+          Divider(
             height: 20,
-            color: greenColor,
+            color: dividerColor,
             thickness: 1.5,
           ),
           body

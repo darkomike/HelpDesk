@@ -13,7 +13,7 @@ const List<Color> redColorGradient = [
 
 const List<Color> greenColorGradient = [Color(0xff68BD70), Color(0xff2D5F32)];
 
-getBackgroundGradientOpacity({required double opacity}) => [
-      const Color(0xff68BD70).withOpacity(opacity),
-      const Color(0xff2D5F32).withOpacity(opacity)
+getBackgroundGradientOpacity({required double opacity,  Color color = greenColor}) => [
+       color.withOpacity(opacity),
+       color.withOpacity(opacity)
     ];
