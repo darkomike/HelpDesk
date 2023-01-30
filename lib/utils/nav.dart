@@ -14,6 +14,16 @@ pushReplace(
   );
 }
 
+pushAndRemove(
+    {required BuildContext context,
+    required Widget destination,
+    AxisDirection direction = AxisDirection.right}) {
+  Navigator.pushAndRemoveUntil(
+      context,
+      CustomPageRoute(child: destination, direction: direction),
+      (route) => false);
+}
+
 push({
   required BuildContext context,
   required Widget destination,
