@@ -132,7 +132,7 @@ class _AdminHomeState extends State<AdminHome> {
                                               ),
                                             ),
                                           ),
-                                          getSpaceH(height: 10),
+                                          AppUtils.getSpaceH(height: 10),
                                           CustomElevatedButton(
                                               width: double.infinity,
                                               gradient: LinearGradient(
@@ -147,7 +147,7 @@ class _AdminHomeState extends State<AdminHome> {
                                                         redColorGradient;
                                                   },
                                                 );
-                                                getDelayed(
+                                                  AppUtils.getDelayed(
                                                     duration: 3,
                                                     callback: () {
                                                       Provider.of<AppState>(
@@ -156,7 +156,7 @@ class _AdminHomeState extends State<AdminHome> {
                                                           .setIsUserLoggedIn(
                                                               value: false);
                                                       Navigator.pop(context);
-                                                      pushReplace(
+                                            NavUtils.           pushReplace(
                                                           context: context,
                                                           destination:
                                                               const Login());
@@ -231,7 +231,7 @@ class _AdminHomeState extends State<AdminHome> {
                           label: "SUBJECTS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
-                  getSpaceW(width: 20),
+                    AppUtils. getSpaceW(width: 20),
                   const Expanded(
                       flex: 3,
                       child: CustomText(
@@ -239,7 +239,7 @@ class _AdminHomeState extends State<AdminHome> {
                           label: "STATUS",
                           color: blackColor,
                           fontWeight: FontWeight.bold)),
-                  getSpaceW(width: 10),
+                AppUtils.     getSpaceW(width: 10),
                   const Expanded(
                     flex: 4,
                     child: CustomText(
@@ -248,7 +248,7 @@ class _AdminHomeState extends State<AdminHome> {
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.bold),
                   ),
-                  getSpaceW(width: 10),
+                    AppUtils. getSpaceW(width: 10),
                 ],
               ),
             ),
@@ -273,7 +273,7 @@ class _AdminHomeState extends State<AdminHome> {
                     subject:
                         'Great to have you onboard,The next step is crucial, yet simple! To see messages',
                     onTap: () {
-                      push(context: context, destination: const TicketDetail());
+                     NavUtils.  push(context: context, destination: const TicketDetail());
                     },
                   );
                 },

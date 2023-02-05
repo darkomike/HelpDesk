@@ -2,7 +2,7 @@ export '../index.dart';
 
 export 'paths.dart';
 
-export 'gaps.dart';
+export 'app_utils.dart';
 
-export 'nav.dart';
+export 'nav_utils.dart';
 export 'local_storage.dart';

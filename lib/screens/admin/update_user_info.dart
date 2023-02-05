@@ -28,7 +28,7 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
               child: Column(
                 children: [
                   Container(
-                    width: getMySize(context: context).width,
+                    width:    AppUtils.getMySize(context: context).width,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -46,30 +46,30 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  getSpaceH(height: 30),
+                   AppUtils.  getSpaceH(height: 30),
                   CustomTextField(
                       controller: _surnameController,
                       hintText: "Addo",
                       labelText: "Surname"),
-                  getSpaceH(height: 20),
+                     AppUtils.getSpaceH(height: 20),
                   CustomTextField(
                       controller: _otherNamesController,
                       hintText: "Michael",
                       labelText: "Other Names"),
-                  getSpaceH(height: 20),
+                    AppUtils. getSpaceH(height: 20),
                   CustomTextField(
                       controller: _telephoneController,
                       hintText: "0551167889",
                       labelText: "Telephone"),
-                  getSpaceH(height: 20),
+                     AppUtils.getSpaceH(height: 20),
                   CustomTextField(
                       controller: _emailController,
                       hintText: "maddo@gmail.com",
                       labelText: "Email"),
-                  getSpaceH(height: 40),
+                     AppUtils.getSpaceH(height: 40),
                   CustomElevatedButton(
                       borderRadius: BorderRadius.circular(20),
-                      width: getMySize(context: context).height / 2,
+                      width:    AppUtils. getMySize(context: context).height / 2,
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -78,7 +78,7 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
                                 body: Column(
                                   children: [
                                     const CustomText(label: "Confirm changes?"),
-                                    getSpaceH(height: 20),
+                                       AppUtils.getSpaceH(height: 20),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,

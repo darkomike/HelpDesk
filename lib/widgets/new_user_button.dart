@@ -24,26 +24,26 @@ class NewUserButton extends StatelessWidget {
         children: [
           Row(
             children: [
-              getSpaceW(width: 10),
+                AppUtils. getSpaceW(width: 10),
               Expanded(
                 flex: 2,
                 child: CustomText(
                   label: userID,
                 ),
               ),
-              getSpaceW(width: 10),
+              AppUtils.   getSpaceW(width: 10),
               Expanded(
                   flex: 2,
                   child: CustomText(
                     label: username,
                   )),
-              getSpaceW(width: 10),
+               AppUtils.  getSpaceW(width: 10),
               Expanded(
                   flex: 2,
                   child: CustomText(
                     label: role,
                   )),
-              getSpaceW(width: 10),
+                AppUtils. getSpaceW(width: 10),
               Expanded(
                 child: IconButton(
                     onPressed: onCancel,

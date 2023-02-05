@@ -43,7 +43,7 @@ class CsHelpDeskApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: SharedPreferencesHelper().getValue(key: isLoggedInKey)
-          ? checkUserLoginMode(
+          ?  NavUtils.checkUserLoginMode(
               userRole: SharedPreferencesHelper().getValue(key: userRole),
             )
           : const Login(),

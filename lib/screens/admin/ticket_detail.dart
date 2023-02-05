@@ -206,7 +206,7 @@ class _TicketDetailState extends State<TicketDetail> {
                 ),
               ),
             ),
-            getSpaceH(
+             AppUtils.  getSpaceH(
               height: 50,
             ),
           ],
@@ -215,7 +215,7 @@ class _TicketDetailState extends State<TicketDetail> {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          getSpaceH(height: 10),
+            AppUtils. getSpaceH(height: 10),
         ],
       ),
       bottomSheet: Container(

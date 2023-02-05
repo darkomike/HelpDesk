@@ -48,7 +48,7 @@ class _StudentTicketDetailsState extends State<StudentTicketDetails> {
                     label: "Status:",
                     fontWeight: FontWeight.bold,
                   ),
-                  getSpaceW(width: 10),
+                     AppUtils.getSpaceW(width: 10),
                   const CustomText(
                     textAlign: TextAlign.start,
                     label: "Open",
@@ -137,7 +137,7 @@ class _StudentTicketDetailsState extends State<StudentTicketDetails> {
                     Navigator.pop(context);
                   },
                   borderRadius: BorderRadius.circular(15),
-                  width: getMySize(context: context).width * (2 / 5),
+                  width:   AppUtils. getMySize(context: context).width * (2 / 5),
                   child: const Text(
                     "OK",
                     style: TextStyle(

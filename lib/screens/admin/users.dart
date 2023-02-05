@@ -58,21 +58,21 @@ class _UsersState extends State<Users> {
               children: [
                 Row(
                   children: [
-                    getSpaceW(width: 10),
+                      AppUtils. getSpaceW(width: 10),
                     const Expanded(
                         flex: 2,
                         child: Text("UserID ",
                             style: TextStyle(
                                 color: blackColor,
                                 fontWeight: FontWeight.bold))),
-                    getSpaceW(width: 10),
+                       AppUtils.getSpaceW(width: 10),
                     const Expanded(
                         flex: 2,
                         child: Text("Username",
                             style: TextStyle(
                                 color: blackColor,
                                 fontWeight: FontWeight.bold))),
-                    getSpaceW(width: 10),
+                     AppUtils.  getSpaceW(width: 10),
                     const Expanded(
                         flex: 2,
                         child: Text("Role",
@@ -80,7 +80,7 @@ class _UsersState extends State<Users> {
                                 color: blackColor,
                                 fontWeight: FontWeight.bold))),
                     const Expanded(child: SizedBox()),
-                    getSpaceW(width: 10),
+                      AppUtils. getSpaceW(width: 10),
                   ],
                 ),
                 Divider(
@@ -105,10 +105,10 @@ class _UsersState extends State<Users> {
                               children: [
                                 CustomElevatedButton(
                                   borderRadius: BorderRadius.circular(10),
-                                  width: getMySize(context: context).width / 2,
+                                  width:   AppUtils. getMySize(context: context).width / 2,
                                   onPressed: () {
                                     Navigator.pop(context);
-                                    push(
+                                 NavUtils.    push(
                                         context: context,
                                         destination: const UpdateUserInfo());
                                   },
@@ -117,12 +117,12 @@ class _UsersState extends State<Users> {
                                     color: whiteColor,
                                   ),
                                 ),
-                                getSpaceH(height: 10),
+                                 AppUtils.  getSpaceH(height: 10),
                                 CustomElevatedButton(
                                   gradient: const LinearGradient(
                                       colors: [Colors.red, Colors.redAccent]),
                                   borderRadius: BorderRadius.circular(10),
-                                  width: getMySize(context: context).width / 2,
+                                  width:    AppUtils.getMySize(context: context).width / 2,
                                   onPressed: () {
                                     Navigator.pop(context);
                                     showDialog(
@@ -137,7 +137,7 @@ class _UsersState extends State<Users> {
                                                       "Do you want to delete user: 'kwantwi12'?",
                                                   textAlign: TextAlign.center,
                                                 ),
-                                                getSpaceH(height: 10),
+                                                AppUtils.   getSpaceH(height: 10),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment

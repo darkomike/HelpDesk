@@ -45,7 +45,7 @@ class _NewUsersState extends State<NewUsers> {
                             const CustomText(
                                 textAlign: TextAlign.center,
                                 label: "Confirm addition of '2' Users?"),
-                            getSpaceH(height: 10),
+                              AppUtils. getSpaceH(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -115,7 +115,7 @@ class _NewUsersState extends State<NewUsers> {
               children: [
                 Row(
                   children: [
-                    getSpaceW(width: 10),
+                      AppUtils. getSpaceW(width: 10),
                     const Expanded(
                       flex: 2,
                       child: Text(
@@ -126,7 +126,7 @@ class _NewUsersState extends State<NewUsers> {
                         ),
                       ),
                     ),
-                    getSpaceW(width: 10),
+                    AppUtils.   getSpaceW(width: 10),
                     const Expanded(
                       flex: 2,
                       child: Text(
@@ -137,7 +137,7 @@ class _NewUsersState extends State<NewUsers> {
                         ),
                       ),
                     ),
-                    getSpaceW(width: 10),
+                       AppUtils.getSpaceW(width: 10),
                     const Expanded(
                       flex: 2,
                       child: Text(
@@ -149,7 +149,7 @@ class _NewUsersState extends State<NewUsers> {
                       ),
                     ),
                     const Expanded(child: SizedBox()),
-                    getSpaceW(width: 10),
+                      AppUtils. getSpaceW(width: 10),
                   ],
                 ),
                 Divider(

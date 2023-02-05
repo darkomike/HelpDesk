@@ -115,7 +115,7 @@ class _StudentSupportState extends State<StudentSupport> {
                                               ),
                                             ),
                                           ),
-                                          getSpaceH(height: 10),
+                                          AppUtils.getSpaceH(height: 10),
                                           CustomElevatedButton(
                                               width: double.infinity,
                                               borderRadius:
@@ -127,7 +127,7 @@ class _StudentSupportState extends State<StudentSupport> {
                                                         "Signing Out";
                                                   },
                                                 );
-                                                getDelayed(
+                                                AppUtils.getDelayed(
                                                     duration: 3,
                                                     callback: () {
                                                       Provider.of<AppState>(
@@ -137,7 +137,7 @@ class _StudentSupportState extends State<StudentSupport> {
                                                               value: false);
                                                       Navigator.pop(context);
 
-                                                      pushReplace(
+                                                      NavUtils.pushReplace(
                                                           context: context,
                                                           destination:
                                                               const Login());
@@ -293,7 +293,7 @@ class SupportBody extends StatelessWidget {
             itemBuilder: (BuildContext context, index) {
               return InkWell(
                 onTap: () {
-                  push(
+                  NavUtils.push(
                     context: context,
                     destination: const StudentTicketDetails(),
                   );
@@ -311,7 +311,7 @@ class SupportBody extends StatelessWidget {
                               'Great to have you onboard,The next step is crucial, yet simple! To see messages',
                         ),
                       ),
-                      getSpaceW(width: 10),
+                      AppUtils.getSpaceW(width: 10),
                       const Expanded(
                         flex: 2,
                         child: CustomText(
@@ -348,10 +348,11 @@ class NoSupportTicket extends StatelessWidget {
               label: 'No Ticket Available',
               fontSize: 20,
               fontWeight: FontWeight.bold),
-          getSpaceH(height: 10),
+          AppUtils.getSpaceH(height: 10),
           CustomElevatedButton(
             onPressed: () {
-              push(context: context, destination: const StudentSupportForm());
+              NavUtils.push(
+                  context: context, destination: const StudentSupportForm());
             },
             borderRadius: BorderRadius.circular(10),
             child: const CustomText(

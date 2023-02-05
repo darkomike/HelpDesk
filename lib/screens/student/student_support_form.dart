@@ -74,7 +74,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final shouldPop = await showWarning(
+        final shouldPop = await     AppUtils.showWarning(
             context, "Do you want to decline support request?");
         return shouldPop ?? false;
       },
@@ -91,7 +91,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  getSpaceH(height: 20),
+                     AppUtils.getSpaceH(height: 20),
                   const CustomText(
                     textAlign: TextAlign.left,
                     label: "Select Ticket Tag: ",
@@ -165,7 +165,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                     hintText: 'Your answer',
                     labelText: '',
                   ),
-                  getSpaceH(height: 10),
+                    AppUtils. getSpaceH(height: 10),
                   Container(
                     margin: const EdgeInsets.only(top: 20, bottom: 10),
                     child: RichText(
@@ -199,7 +199,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                       ),
                     ),
                   ),
-                  getSpaceH(height: 10),
+                    AppUtils. getSpaceH(height: 10),
                   Container(
                     padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.symmetric(vertical: 5),
@@ -238,7 +238,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                       },
                     ),
                   ),
-                  getSpaceH(height: 10),
+                    AppUtils. getSpaceH(height: 10),
                   Container(
                     margin: const EdgeInsets.only(top: 20, bottom: 10),
                     child: RichText(
@@ -278,7 +278,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                     hintText: 'Your answer',
                     labelText: '',
                   ),
-                  getSpaceH(height: 10),
+                    AppUtils. getSpaceH(height: 10),
                   Container(
                     margin: const EdgeInsets.only(top: 20, bottom: 10),
                     child: RichText(
@@ -315,7 +315,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                                 topLeft: Radius.circular(10),
                                 bottomLeft: Radius.circular(10)),
                             onPressed: () {
-                              pickFile(
+                              FileUtils.pickFile(
                                       allowedExtensions: ['pdf', 'doc', 'jpg'],
                                       allowMultiple: false)
                                   .then((value) {
@@ -351,8 +351,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                       ],
                     ),
                   ),
-                  getSpaceH(height: 10),
-                  getSpaceH(height: 10),
+                     AppUtils.getSpaceH(height: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -379,7 +378,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                           ),
                         ),
                       ),
-                      getSpaceH(height: 8),
+                        AppUtils. getSpaceH(height: 8),
                       OutlinedButton(
                         child:
                             CustomText(label: DateFormat.yMMMd().format(_date)),
@@ -389,7 +388,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                       ),
                     ],
                   ),
-                  getSpaceH(height: 20),
+                     AppUtils.getSpaceH(height: 20),
                   CustomElevatedButton(
                     width: double.infinity,
                     borderRadius: BorderRadius.circular(15),
@@ -422,7 +421,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                                             color: whiteColor,
                                           )),
                                     ),
-                                    getSpaceW(width: 20),
+                                       AppUtils.getSpaceW(width: 20),
                                     Expanded(
                                       child: CustomElevatedButton(
                                           gradient: const LinearGradient(
@@ -453,7 +452,7 @@ class _StudentSupportFormState extends State<StudentSupportForm> {
                       );
                     },
                   ),
-                  getSpaceH(height: 20)
+                    AppUtils. getSpaceH(height: 20)
                 ],
               ),
             ),

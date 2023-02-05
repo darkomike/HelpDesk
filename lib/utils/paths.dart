@@ -12,3 +12,4 @@ getImagePathJpg({required String name}) {
 
 
 shortenPath({required String value, int length = 10})=> (value.length > length ) ? "${value.substring(0, length)}..." : value;
+

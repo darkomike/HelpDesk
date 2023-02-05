@@ -51,7 +51,7 @@ class FirestoreService {
         .then((DocumentSnapshot snapshot) {
       Provider.of<AppState>(context, listen: false)
           .setIsUserLoggedIn(value: true);
-      pushReplace(
+     NavUtils. pushReplace(
         context: context,
         destination: widget,
       );
@@ -69,7 +69,7 @@ class FirestoreService {
               children: [
                 CustomText(
                     label: "${error.message}", overflow: TextOverflow.visible),
-                getSpaceH(height: 10),
+                  AppUtils. getSpaceH(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

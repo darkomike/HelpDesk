@@ -30,9 +30,9 @@ class _BatchUploadState extends State<BatchUpload> {
         children: [
           InkWell(
             onTap: () {
-              pickAnyFile().then((value) {
+              FileUtils.pickAnyFile().then((value) {
                 _attachFile = value!.files.first;
-                readFileContent(path: _attachFile!.path!).then((value) {
+                FileUtils.readFileContent(path: _attachFile!.path!).then((value) {
 
                   List<List<dynamic>> rows = const CsvToListConverter().convert(value);
                   List<Map> jsonData = rows.map((row) => Map.fromIterables(rows[0], row)).toList();
@@ -40,7 +40,7 @@ class _BatchUploadState extends State<BatchUpload> {
 
 
                 });
-                debugPrint("Attach file ${readFileContent(path: _attachFile!.path!)}");
+                debugPrint("Attach file ${FileUtils.readFileContent(path: _attachFile!.path!)}");
                 setState(() {
                   _filename =
                       "${shortenPath(value: _attachFile!.name)}${_attachFile!.extension!}";
@@ -58,18 +58,18 @@ class _BatchUploadState extends State<BatchUpload> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.file_present),
-                  getSpaceH(height: 10),
+                   AppUtils.  getSpaceH(height: 10),
                   CustomText(label: _filename)
                 ],
               ),
             ),
           ),
-          getSpaceH(height: 20),
+            AppUtils. getSpaceH(height: 20),
           CustomElevatedButton(
-              width: getMySize(context: context).width / 2,
+              width:   AppUtils. getMySize(context: context).width / 2,
               borderRadius: BorderRadius.circular(20),
               onPressed: () {
-                push(context: context, destination: const NewUsers());
+                NavUtils. push(context: context, destination: const NewUsers());
               },
               child: const CustomText(
                 color: whiteColor,

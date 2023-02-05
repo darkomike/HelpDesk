@@ -3,7 +3,7 @@ class AdminModelFields {
   static String otherNames = 'otherNames';
   static String email = 'email';
   static String telephone = 'telephone';
-  static String userID = 'userID';
+  static String adminID = 'userID';
 }
 
 class AdminModel {
@@ -26,7 +26,7 @@ class AdminModel {
         AdminModelFields.otherNames: otherNames,
         AdminModelFields.email: email,
         AdminModelFields.telephone: telephone,
-        AdminModelFields.userID: userID,
+        AdminModelFields.adminID: userID,
       };
 
   factory AdminModel.fromJson(Map<String, dynamic> json) {
@@ -35,7 +35,7 @@ class AdminModel {
       otherNames: json[AdminModelFields.otherNames],
       email: json[AdminModelFields.email],
       telephone: json[AdminModelFields.telephone],
-      userID: json[AdminModelFields.userID],
+      userID: json[AdminModelFields.adminID],
     );
   }
 }
