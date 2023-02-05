@@ -137,7 +137,14 @@ class _AddUserState extends State<AddUser> {
                       ? CustomTextField(
                           controller: _indexNumberController,
                           hintText: "0000000",
-                          labelText: "Index Number")
+                          labelText: "Index Number",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter User Index Number';
+                            }
+                            return null;
+                          },
+                        )
                       : const SizedBox(),
                   _role == "Student"
                       ? AppUtils.getSpaceH(height: 20)
@@ -146,71 +153,132 @@ class _AddUserState extends State<AddUser> {
                       ? CustomTextField(
                           controller: _studentNumberController,
                           hintText: "0000000",
-                          labelText: "Student Ref")
+                          labelText: "Student Ref",
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter User Student Ref';
+                            }
+                            return null;
+                          },
+                        )
                       : const SizedBox(),
                   _role == "Student"
                       ? AppUtils.getSpaceH(height: 20)
                       : AppUtils.getSpaceH(height: 5),
                   CustomTextField(
-                      controller: _surnameController,
-                      hintText: "Addo",
-                      labelText: "Surname"),
+                    controller: _surnameController,
+                    hintText: "Addo",
+                    labelText: "Surname",
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter User Surname';
+                      }
+                      return null;
+                    },
+                  ),
                   AppUtils.getSpaceH(height: 20),
                   CustomTextField(
-                      controller: _otherNamesController,
-                      hintText: "Michael",
-                      labelText: "Other Names"),
+                    controller: _otherNamesController,
+                    hintText: "Michael",
+                    labelText: "Other Names",
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter User Other Names';
+                      }
+                      return null;
+                    },
+                  ),
                   AppUtils.getSpaceH(height: 20),
                   CustomTextField(
-                      controller: _telephoneController,
-                      hintText: "0551167889",
-                      labelText: "Telephone"),
+                    controller: _telephoneController,
+                    hintText: "0551167889",
+                    labelText: "Telephone",
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter User Phone Number';
+                      }
+                      return null;
+                    },
+                  ),
                   AppUtils.getSpaceH(height: 20),
                   CustomTextField(
-                      controller: _emailController,
-                      hintText: "maddo@gmail.com",
-                      labelText: "Email"),
+                    controller: _emailController,
+                    hintText: "maddo@gmail.com",
+                    labelText: "Email",
+                    validator: InputValidation().emailValidation,
+                  ),
                   AppUtils.getSpaceH(height: 40),
                   CustomElevatedButton(
                       borderRadius: BorderRadius.circular(20),
                       width: AppUtils.getMySize(context: context).height / 2,
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (_role == 'Choose') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                              'Please select User Role',
+                            ),
+                          ));
+                        } else {
                           switch (_role) {
                             case 'Student':
-                              final studentModel = StudentModel(
-                                  surname: _surnameController.text.trim(),
-                                  otherNames: _otherNamesController.text.trim(),
-                                  email: _emailController.text.trim(),
-                                  telephone: _telephoneController.text.trim(),
-                                  studentID: AppUtils.randomString(15),
-                                  createdAt: DateTime.now().toIso8601String(),
-                                  indexNumber:
-                                      _indexNumberController.text.trim(),
-                                  studentReference:
-                                      _studentNumberController.text.trim(),
-                                  studentYear: _year);
-                              FirebaseFirestore.instance
-                                  .collection('students')
-                                  .doc(studentModel.studentID)
-                                  .set(studentModel.toJson())
-                                  .then((value) {
-                                NavUtils.pop(context);
-                                NavUtils.pop(context);
-                              }).catchError((onError) {
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                                AppUtils.showErrorDialog(
-                                    title: 'User Upload Error',
-                                    errorMessage:
-                                        "Oops, something went wrong.\n${onError.message}",
-                                    context: context);
-                              });
-
+                              if (_year == "Choose") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  backgroundColor: Colors.red,
+                                  content: Text(
+                                    'Please select student year',
+                                  ),
+                                ));
+                              } else {
+                                if (_formKey.currentState!.validate()) {
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+                                  final studentModel = StudentModel(
+                                      surname: _surnameController.text.trim(),
+                                      otherNames:
+                                          _otherNamesController.text.trim(),
+                                      email: _emailController.text.trim(),
+                                      telephone:
+                                          _telephoneController.text.trim(),
+                                      studentID: AppUtils.randomString(15),
+                                      createdAt:
+                                          DateTime.now().toIso8601String(),
+                                      indexNumber:
+                                          _indexNumberController.text.trim(),
+                                      studentReference:
+                                          _studentNumberController.text.trim(),
+                                      studentYear: _year);
+                                  FirebaseFirestore.instance
+                                      .collection('students')
+                                      .doc(studentModel.studentID)
+                                      .set(studentModel.toJson())
+                                      .then((value) {
+                                    NavUtils.pushReplace(
+                                        context: context,
+                                        destination: const CreateUser());
+                                  }).catchError((onError) {
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
+                                    AppUtils.showErrorDialog(
+                                        title: 'User Upload Error',
+                                        errorMessage:
+                                            "Oops, something went wrong.\n${onError.message}",
+                                        context: context);
+                                  });
+                                }
+                                break;
+                              }
                               break;
                             default:
+                              break;
                           }
+                          setState(() {
+                            _isLoading = false;
+                          });
                         }
                       },
                       child: Row(
