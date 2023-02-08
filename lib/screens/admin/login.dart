@@ -17,7 +17,6 @@ class _LoginState extends State<Login> {
 
   bool _passwordObscure = true;
   bool _isLoading = false;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _LoginState extends State<Login> {
             key: _formKey,
             child: Column(
               children: [
-                 AppUtils.  getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 CustomText(
                   label:
                       "Welcome Back \n${Provider.of<UserState>(context).userRolee}",
@@ -44,7 +43,7 @@ class _LoginState extends State<Login> {
                   fontWeight: FontWeight.bold,
                   textAlign: TextAlign.center,
                 ),
-                 AppUtils.  getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 SizedBox(
                   height: 100,
                   width: 100,
@@ -54,16 +53,14 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                 AppUtils.  getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 CustomTextField(
                   controller: _emailController,
-                  hintText: 'admin@gmail.com',
-                  validator: (value) {
-                    return value!.isEmpty ? "Invalid Input" : null;
-                  },
+                  hintText: 'admin@knust.edu.gh',
+                  validator: InputValidation().emailValidation,
                   labelText: 'Email',
                 ),
-                 AppUtils.  getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 CustomTextFieldPassword(
                   obscureText: _passwordObscure,
                   suffixIcon: IconButton(
@@ -78,14 +75,13 @@ class _LoginState extends State<Login> {
                     return value!.isEmpty ? "Invalid Input" : null;
                   },
                   controller: _passwordController,
-                  hintText: '*************',
+                  hintText: '',
                   labelText: 'Password',
                 ),
-                   AppUtils.getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 CustomElevatedButton(
                   width: double.infinity,
                   height: 50,
-                  
                   borderRadius: BorderRadius.circular(20),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -120,7 +116,7 @@ class _LoginState extends State<Login> {
                                       CustomText(
                                           label: "${onError.message}",
                                           overflow: TextOverflow.visible),
-                                       AppUtils.  getSpaceH(height: 10),
+                                      AppUtils.getSpaceH(height: 10),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -177,7 +173,7 @@ class _LoginState extends State<Login> {
                                       CustomText(
                                           label: "${onError.message}",
                                           overflow: TextOverflow.visible),
-                                       AppUtils.  getSpaceH(height: 10),
+                                      AppUtils.getSpaceH(height: 10),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -233,7 +229,7 @@ class _LoginState extends State<Login> {
                                       CustomText(
                                           label: "${onError.message}",
                                           overflow: TextOverflow.visible),
-                                      AppUtils.   getSpaceH(height: 10),
+                                      AppUtils.getSpaceH(height: 10),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -290,7 +286,7 @@ class _LoginState extends State<Login> {
                                       CustomText(
                                           label: "${onError.message}",
                                           overflow: TextOverflow.visible),
-                                       AppUtils.  getSpaceH(height: 10),
+                                      AppUtils.getSpaceH(height: 10),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -333,7 +329,7 @@ class _LoginState extends State<Login> {
                                         label:
                                             "Oops Something wrong. Please check your internet connection and try again",
                                         overflow: TextOverflow.visible),
-                                      AppUtils. getSpaceH(height: 10),
+                                    AppUtils.getSpaceH(height: 10),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -364,7 +360,11 @@ class _LoginState extends State<Login> {
                       }
                     }
                   },
-                  gradient: LinearGradient(colors: !_isLoading ? getBackgroundGradientOpacity(opacity: 1) :  getBackgroundGradientOpacity(opacity: 1, color: Colors.blue)),
+                  gradient: LinearGradient(
+                      colors: !_isLoading
+                          ? getBackgroundGradientOpacity(opacity: 1)
+                          : getBackgroundGradientOpacity(
+                              opacity: 1, color: Colors.blue)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -374,7 +374,7 @@ class _LoginState extends State<Login> {
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
-                       AppUtils.  getSpaceW(width: 10),
+                      AppUtils.getSpaceW(width: 10),
                       _isLoading
                           ? const SizedBox(
                               height: 22,
@@ -387,7 +387,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                AppUtils.   getSpaceH(height: 20),
+                AppUtils.getSpaceH(height: 20),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -397,7 +397,7 @@ class _LoginState extends State<Login> {
                             "Not a ${Provider.of<UserState>(context).userRolee}",
                         fontSize: 18,
                       ),
-                       AppUtils.  getSpaceW(width: 20),
+                      AppUtils.getSpaceW(width: 20),
                       TextButton(
                         child: const CustomText(
                           label: "Change Role",

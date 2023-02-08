@@ -211,7 +211,7 @@ class _AddUserState extends State<AddUser> {
                   CustomElevatedButton(
                       borderRadius: BorderRadius.circular(20),
                       width: AppUtils.getMySize(context: context).height / 2,
-                      onPressed: () {
+                      onPressed: () async {
                         if (_role == 'Choose') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -237,28 +237,60 @@ class _AddUserState extends State<AddUser> {
                                     _isLoading = true;
                                   });
                                   final studentModel = StudentModel(
-                                      surname: _surnameController.text.trim(),
-                                      otherNames:
-                                          _otherNamesController.text.trim(),
-                                      email: _emailController.text.trim(),
-                                      telephone:
-                                          _telephoneController.text.trim(),
-                                      studentID: AppUtils.randomString(15),
-                                      createdAt:
-                                          DateTime.now().toIso8601String(),
-                                      indexNumber:
-                                          _indexNumberController.text.trim(),
-                                      studentReference:
-                                          _studentNumberController.text.trim(),
-                                      studentYear: _year);
+                                    surname: _surnameController.text.trim(),
+                                    otherNames:
+                                        _otherNamesController.text.trim(),
+                                    email: _emailController.text.trim(),
+                                    telephone: _telephoneController.text.trim(),
+                                    studentID: AppUtils.randomString(15),
+                                    createdAt: DateTime.now().toIso8601String(),
+                                    indexNumber:
+                                        _indexNumberController.text.trim(),
+                                    studentReference:
+                                        _studentNumberController.text.trim(),
+                                    studentYear: _year,
+                                  );
+                                  await CSHelpDeskFirebaseAuth.createUser(
+                                    email: _emailController.text.trim(),
+                                    password:
+                                        _studentNumberController.text.trim(),
+                                  );
+                                  String emailBody = SendEmail().createBody(
+                                    name:
+                                        '${_surnameController.text.trim().toUpperCase()} ${_otherNamesController.text.trim().toUpperCase()}',
+                                    email: _emailController.text.trim(),
+                                    studentNumber:
+                                        _studentNumberController.text.trim(),
+                                  );
+                                  String emailReponse =
+                                      await SendEmail().sendEmail(
+                                    body: emailBody,
+                                    subject: 'HelpDesk Account Creation',
+                                    receipients: [_emailController.text.trim()],
+                                  );
+                                  setState(() {
+                                    emailReponse == 'success'
+                                        ? ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                            backgroundColor: Colors.green,
+                                            content:
+                                                Text('Email Sent Successful'),
+                                          ))
+                                        : AppUtils.showErrorDialog(
+                                            title: 'User Upload Error',
+                                            errorMessage:
+                                                "Oops, something went wrong.\n$emailReponse",
+                                            context: context);
+                                  });
                                   FirebaseFirestore.instance
                                       .collection('students')
                                       .doc(studentModel.studentID)
                                       .set(studentModel.toJson())
                                       .then((value) {
                                     NavUtils.pushReplace(
-                                        context: context,
-                                        destination: const CreateUser());
+                                      context: context,
+                                      destination: const CreateUser(),
+                                    );
                                   }).catchError((onError) {
                                     setState(() {
                                       _isLoading = false;
@@ -272,6 +304,79 @@ class _AddUserState extends State<AddUser> {
                                 }
                                 break;
                               }
+                              break;
+                            case 'Admin':
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                final adminModel = AdminModel(
+                                  surname: _surnameController.text.trim(),
+                                  otherNames: _otherNamesController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  telephone: _telephoneController.text.trim(),
+                                  userID: AppUtils.randomString(15),
+                                );
+
+                                await CSHelpDeskFirebaseAuth.createUser(
+                                  email: _emailController.text.trim(),
+                                  password:
+                                      _studentNumberController.text.trim(),
+                                );
+                                String emailBody = SendEmail().createBody(
+                                  role: 'An Administrator',
+                                  name:
+                                      '${_surnameController.text.trim().toUpperCase()} ${_otherNamesController.text.trim().toUpperCase()}',
+                                  email: _emailController.text.trim(),
+                                  studentNumber:
+                                      _studentNumberController.text.trim(),
+                                );
+                                String emailReponse =
+                                    await SendEmail().sendEmail(
+                                  body: emailBody,
+                                  subject: 'HelpDesk Account Creation',
+                                  receipients: [_emailController.text.trim()],
+                                );
+                                setState(() {
+                                  emailReponse == 'success'
+                                      ? ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.green,
+                                          content:
+                                              Text('Email Sent Successful'),
+                                        ))
+                                      : AppUtils.showErrorDialog(
+                                          title: 'User Upload Error',
+                                          errorMessage:
+                                              "Oops, something went wrong.\n$emailReponse",
+                                          context: context);
+                                });
+                                FirebaseFirestore.instance
+                                    .collection('admin')
+                                    .doc(adminModel.userID)
+                                    .set(adminModel.toJson())
+                                    .then((value) {
+                                  NavUtils.pushReplace(
+                                    context: context,
+                                    destination: const CreateUser(),
+                                  );
+                                }).catchError((onError) {
+                                  setState(() {
+                                    _isLoading = false;
+                                  });
+                                  AppUtils.showErrorDialog(
+                                      title: 'User Upload Error',
+                                      errorMessage:
+                                          "Oops, something went wrong.\n${onError.message}",
+                                      context: context);
+                                });
+                              }
+                              break;
+                            case 'Lecturer':
+                              if (_formKey.currentState!.validate()) {}
+                              break;
+                            case 'Agent':
+                              if (_formKey.currentState!.validate()) {}
                               break;
                             default:
                               break;
