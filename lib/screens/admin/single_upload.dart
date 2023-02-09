@@ -255,33 +255,6 @@ class _AddUserState extends State<AddUser> {
                                     password:
                                         _studentNumberController.text.trim(),
                                   );
-                                  String emailBody = SendEmail().createBody(
-                                    name:
-                                        '${_surnameController.text.trim().toUpperCase()} ${_otherNamesController.text.trim().toUpperCase()}',
-                                    email: _emailController.text.trim(),
-                                    studentNumber:
-                                        _studentNumberController.text.trim(),
-                                  );
-                                  String emailReponse =
-                                      await SendEmail().sendEmail(
-                                    body: emailBody,
-                                    subject: 'HelpDesk Account Creation',
-                                    receipients: [_emailController.text.trim()],
-                                  );
-                                  setState(() {
-                                    emailReponse == 'success'
-                                        ? ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                            backgroundColor: Colors.green,
-                                            content:
-                                                Text('Email Sent Successful'),
-                                          ))
-                                        : AppUtils.showErrorDialog(
-                                            title: 'User Upload Error',
-                                            errorMessage:
-                                                "Oops, something went wrong.\n$emailReponse",
-                                            context: context);
-                                  });
                                   FirebaseFirestore.instance
                                       .collection('students')
                                       .doc(studentModel.studentID)
@@ -323,34 +296,7 @@ class _AddUserState extends State<AddUser> {
                                   password:
                                       _studentNumberController.text.trim(),
                                 );
-                                String emailBody = SendEmail().createBody(
-                                  role: 'An Administrator',
-                                  name:
-                                      '${_surnameController.text.trim().toUpperCase()} ${_otherNamesController.text.trim().toUpperCase()}',
-                                  email: _emailController.text.trim(),
-                                  studentNumber:
-                                      _studentNumberController.text.trim(),
-                                );
-                                String emailReponse =
-                                    await SendEmail().sendEmail(
-                                  body: emailBody,
-                                  subject: 'HelpDesk Account Creation',
-                                  receipients: [_emailController.text.trim()],
-                                );
-                                setState(() {
-                                  emailReponse == 'success'
-                                      ? ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                          backgroundColor: Colors.green,
-                                          content:
-                                              Text('Email Sent Successful'),
-                                        ))
-                                      : AppUtils.showErrorDialog(
-                                          title: 'User Upload Error',
-                                          errorMessage:
-                                              "Oops, something went wrong.\n$emailReponse",
-                                          context: context);
-                                });
+
                                 FirebaseFirestore.instance
                                     .collection('admin')
                                     .doc(adminModel.userID)
