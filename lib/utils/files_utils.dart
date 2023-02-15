@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'index.dart';
 
 class FileUtils {
@@ -7,9 +5,10 @@ class FileUtils {
       {required List<String> allowedExtensions,
       required bool allowMultiple}) async {
     return await FilePicker.platform.pickFiles(
-        allowedExtensions: allowedExtensions,
-        type: FileType.custom,
-        allowMultiple: allowMultiple);
+      allowedExtensions: allowedExtensions,
+      type: FileType.custom,
+      allowMultiple: allowMultiple,
+    );
   }
 
   static Future<FilePickerResult?> pickAnyFile() async {

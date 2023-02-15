@@ -24,7 +24,7 @@ class _CreateUserState extends State<CreateUser> {
         children: [
           InkWell(
             onTap: () {
-              NavUtils. push(context: context, destination: const BatchUpload());
+              NavUtils.push(context: context, destination: const BatchUpload());
             },
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -36,16 +36,16 @@ class _CreateUserState extends State<CreateUser> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.upload_file_sharp),
-                    AppUtils. getSpaceH(height: 10),
+                  AppUtils.getSpaceH(height: 10),
                   const CustomText(label: "Batch Upload")
                 ],
               ),
             ),
           ),
-            AppUtils. getSpaceW(width: 10),
+          AppUtils.getSpaceW(width: 10),
           InkWell(
             onTap: () {
-             NavUtils.  push(context: context, destination: const AddUser());
+              NavUtils.push(context: context, destination: const AddUser());
             },
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -57,7 +57,7 @@ class _CreateUserState extends State<CreateUser> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.upload_file_sharp),
-                     AppUtils.getSpaceH(height: 10),
+                  AppUtils.getSpaceH(height: 10),
                   const CustomText(label: "Single Upload")
                 ],
               ),

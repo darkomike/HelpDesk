@@ -216,120 +216,147 @@ class _AddUserState extends State<AddUser> {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             backgroundColor: Colors.red,
-                            content: Text(
-                              'Please select User Role',
-                            ),
+                            content: Text('Please select User Role'),
                           ));
-                        } else {
-                          switch (_role) {
-                            case 'Student':
-                              if (_year == "Choose") {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  backgroundColor: Colors.red,
-                                  content: Text(
-                                    'Please select student year',
-                                  ),
-                                ));
-                              } else {
-                                if (_formKey.currentState!.validate()) {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  final studentModel = StudentModel(
-                                    surname: _surnameController.text.trim(),
-                                    otherNames:
-                                        _otherNamesController.text.trim(),
-                                    email: _emailController.text.trim(),
-                                    telephone: _telephoneController.text.trim(),
-                                    studentID: AppUtils.randomString(15),
-                                    createdAt: DateTime.now().toIso8601String(),
-                                    indexNumber:
-                                        _indexNumberController.text.trim(),
-                                    studentReference:
-                                        _studentNumberController.text.trim(),
-                                    studentYear: _year,
-                                  );
-                                  await CSHelpDeskFirebaseAuth.createUser(
-                                    email: _emailController.text.trim(),
-                                    password:
-                                        _studentNumberController.text.trim(),
-                                  );
-                                  FirebaseFirestore.instance
-                                      .collection('students')
-                                      .doc(studentModel.studentID)
-                                      .set(studentModel.toJson())
-                                      .then((value) {
-                                    NavUtils.pushReplace(
-                                      context: context,
-                                      destination: const CreateUser(),
-                                    );
-                                  }).catchError((onError) {
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                    AppUtils.showErrorDialog(
-                                        title: 'User Upload Error',
-                                        errorMessage:
-                                            "Oops, something went wrong.\n${onError.message}",
-                                        context: context);
-                                  });
-                                }
-                                break;
-                              }
-                              break;
-                            case 'Admin':
-                              if (_formKey.currentState!.validate()) {
-                                setState(() {
-                                  _isLoading = true;
-                                });
-                                final adminModel = AdminModel(
-                                  surname: _surnameController.text.trim(),
-                                  otherNames: _otherNamesController.text.trim(),
-                                  email: _emailController.text.trim(),
-                                  telephone: _telephoneController.text.trim(),
-                                  userID: AppUtils.randomString(15),
-                                );
+                          return;
+                        }
 
-                                await CSHelpDeskFirebaseAuth.createUser(
-                                  email: _emailController.text.trim(),
-                                  password:
-                                      _studentNumberController.text.trim(),
-                                );
+                        switch (_role) {
+                          case 'Student':
+                            if (_year == "Choose") {
+                              AppUtils.showErrorDialog(
+                                title: 'Required Field',
+                                errorMessage: 'Please select student year',
+                                context: context,
+                              );
 
-                                FirebaseFirestore.instance
-                                    .collection('admin')
-                                    .doc(adminModel.userID)
-                                    .set(adminModel.toJson())
-                                    .then((value) {
-                                  NavUtils.pushReplace(
-                                    context: context,
-                                    destination: const CreateUser(),
-                                  );
-                                }).catchError((onError) {
-                                  setState(() {
-                                    _isLoading = false;
-                                  });
-                                  AppUtils.showErrorDialog(
-                                      title: 'User Upload Error',
-                                      errorMessage:
-                                          "Oops, something went wrong.\n${onError.message}",
-                                      context: context);
-                                });
-                              }
-                              break;
-                            case 'Lecturer':
-                              if (_formKey.currentState!.validate()) {}
-                              break;
-                            case 'Agent':
-                              if (_formKey.currentState!.validate()) {}
-                              break;
-                            default:
-                              break;
-                          }
-                          setState(() {
-                            _isLoading = false;
-                          });
+                              return;
+                            }
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+
+                            setState(() {
+                              _isLoading = true;
+                            });
+
+                            final studentModel = StudentModel(
+                              surname: _surnameController.text.trim(),
+                              otherNames: _otherNamesController.text.trim(),
+                              email: _emailController.text.trim(),
+                              telephone: _telephoneController.text.trim(),
+                              studentID: AppUtils.randomString(15),
+                              createdAt: DateTime.now().toIso8601String(),
+                              indexNumber: _indexNumberController.text.trim(),
+                              studentReference:
+                                  _studentNumberController.text.trim(),
+                              studentYear: _year,
+                            );
+
+                            try {
+                              User? user;
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: _emailController.text.trim(),
+                                password: _studentNumberController.text.trim(),
+                              )
+                                  .then((value) {
+                                user = value.user;
+                                studentModel.studentID = user!.uid;
+                              });
+
+                              await FirebaseFirestore.instance
+                                  .collection('students')
+                                  .doc(studentModel.studentID)
+                                  .set(studentModel.toJson());
+                              NavUtils.pushReplace(
+                                context: context,
+                                destination: const CreateUser(),
+                              );
+                            } catch (onError) {
+                              AppUtils.showErrorDialog(
+                                title: 'User Upload Error',
+                                errorMessage:
+                                    "Oops, something went wrong.\n${onError.toString()}",
+                                context: context,
+                              );
+                            } finally {
+                              setState(() {
+                                _isLoading = false;
+                              });
+                            }
+                            break;
+
+                          case 'Admin':
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+
+                            setState(() {
+                              _isLoading = true;
+                            });
+
+                            final adminModel = AdminModel(
+                              surname: _surnameController.text.trim(),
+                              otherNames: _otherNamesController.text.trim(),
+                              email: _emailController.text.trim(),
+                              createdAt: DateTime.now().toIso8601String(),
+                              telephone: _telephoneController.text.trim(),
+                              userID: AppUtils.randomString(15),
+                            );
+
+                            User? user;
+
+                            try {
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: _emailController.text.trim(),
+                                password: _studentNumberController.text.trim(),
+                              )
+                                  .then((value) {
+                                user = value.user;
+                                adminModel.userID = user!.uid;
+                              });
+
+                              await FirebaseFirestore.instance
+                                  .collection('admin')
+                                  .doc(adminModel.userID)
+                                  .set(adminModel.toJson());
+
+                              NavUtils.pushReplace(
+                                context: context,
+                                destination: const CreateUser(),
+                              );
+                            } catch (onError) {
+                              AppUtils.showErrorDialog(
+                                title: 'User Upload Error',
+                                errorMessage:
+                                    "Oops, something went wrong.\n${onError.toString()}",
+                                context: context,
+                              );
+                            } finally {
+                              setState(() {
+                                _isLoading = false;
+                              });
+                            }
+                            break;
+
+                          case 'Lecturer':
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            // TODO: Implement Lecturer user creation logic
+                            break;
+
+                          case 'Agent':
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            // TODO: Implement Agent user creation logic
+                            break;
+
+                          default:
+                            break;
                         }
                       },
                       child: Row(

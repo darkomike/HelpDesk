@@ -4,6 +4,7 @@ class AdminModelFields {
   static String email = 'email';
   static String telephone = 'telephone';
   static String adminID = 'userID';
+  static String createdAt = 'createdAt';
 }
 
 class AdminModel {
@@ -12,6 +13,7 @@ class AdminModel {
   String otherNames;
   String email;
   String telephone;
+  String createdAt;
 
   AdminModel({
     required this.surname,
@@ -19,6 +21,7 @@ class AdminModel {
     required this.email,
     required this.telephone,
     required this.userID,
+    required this.createdAt,
   });
 
   Map<String, dynamic> toJson() => {
@@ -27,15 +30,16 @@ class AdminModel {
         AdminModelFields.email: email,
         AdminModelFields.telephone: telephone,
         AdminModelFields.adminID: userID,
+        AdminModelFields.createdAt: createdAt,
       };
 
   factory AdminModel.fromJson(Map<String, dynamic> json) {
     return AdminModel(
-      surname: json[AdminModelFields.surname],
-      otherNames: json[AdminModelFields.otherNames],
-      email: json[AdminModelFields.email],
-      telephone: json[AdminModelFields.telephone],
-      userID: json[AdminModelFields.adminID],
-    );
+        surname: json[AdminModelFields.surname],
+        otherNames: json[AdminModelFields.otherNames],
+        email: json[AdminModelFields.email],
+        telephone: json[AdminModelFields.telephone],
+        userID: json[AdminModelFields.adminID],
+        createdAt: json[AdminModelFields.createdAt]);
   }
 }

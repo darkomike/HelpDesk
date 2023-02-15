@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:helpdesk/utils/files_utils.dart';
-
 import 'index.dart';
 
 class BatchUpload extends StatefulWidget {
@@ -32,21 +28,22 @@ class _BatchUploadState extends State<BatchUpload> {
             onTap: () {
               FileUtils.pickAnyFile().then((value) {
                 _attachFile = value!.files.first;
-                FileUtils.readFileContent(path: _attachFile!.path!).then((value) {
-
-                  List<List<dynamic>> rows = const CsvToListConverter().convert(value);
-                  List<Map> jsonData = rows.map((row) => Map.fromIterables(rows[0], row)).toList();
+                FileUtils.readFileContent(path: _attachFile!.path!)
+                    .then((value) {
+                  List<List<dynamic>> rows =
+                      const CsvToListConverter().convert(value);
+                  List<Map> jsonData = rows
+                      .map((row) => Map.fromIterables(rows[0], row))
+                      .toList();
                   debugPrint(json.encode(jsonData));
-
-
                 });
-                debugPrint("Attach file ${FileUtils.readFileContent(path: _attachFile!.path!)}");
+                debugPrint(
+                    "Attach file ${FileUtils.readFileContent(path: _attachFile!.path!)}");
                 setState(() {
                   _filename =
                       "${shortenPath(value: _attachFile!.name)}${_attachFile!.extension!}";
                 });
               });
-
             },
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -58,19 +55,17 @@ class _BatchUploadState extends State<BatchUpload> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.file_present),
-                   AppUtils.  getSpaceH(height: 10),
+                  AppUtils.getSpaceH(height: 10),
                   CustomText(label: _filename)
                 ],
               ),
             ),
           ),
-            AppUtils. getSpaceH(height: 20),
+          AppUtils.getSpaceH(height: 20),
           CustomElevatedButton(
-              width:   AppUtils. getMySize(context: context).width / 2,
+              width: AppUtils.getMySize(context: context).width / 2,
               borderRadius: BorderRadius.circular(20),
-              onPressed: () {
-                NavUtils. push(context: context, destination: const NewUsers());
-              },
+              onPressed: () {},
               child: const CustomText(
                 color: whiteColor,
                 label: "Submit",
