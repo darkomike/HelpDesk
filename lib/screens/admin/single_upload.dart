@@ -213,11 +213,12 @@ class _AddUserState extends State<AddUser> {
                       width: AppUtils.getMySize(context: context).height / 2,
                       onPressed: () async {
                         if (_role == 'Choose') {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            backgroundColor: Colors.red,
-                            content: Text('Please select User Role'),
-                          ));
+                          AppUtils.showErrorDialog(
+                            title: 'Required Field',
+                            errorMessage: 'Please select User Role',
+                            context: context,
+                          );
+
                           return;
                         }
 
