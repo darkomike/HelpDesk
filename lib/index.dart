@@ -18,7 +18,6 @@ export 'package:provider/provider.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:flutter/foundation.dart';
 export 'package:firebase_auth/firebase_auth.dart';
-export 'firebase/index.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'dart:math';

@@ -269,11 +269,13 @@ class _AddUserState extends State<AddUser> {
                               await FirebaseFirestore.instance
                                   .collection('students')
                                   .doc(studentModel.studentID)
-                                  .set(studentModel.toJson());
-                              NavUtils.pushReplace(
-                                context: context,
-                                destination: const CreateUser(),
-                              );
+                                  .set(studentModel.toJson())
+                                  .then((value) {
+                                NavUtils.pushReplace(
+                                  context: context,
+                                  destination: const CreateUser(),
+                                );
+                              });
                             } catch (onError) {
                               AppUtils.showErrorDialog(
                                 title: 'User Upload Error',
@@ -322,12 +324,13 @@ class _AddUserState extends State<AddUser> {
                               await FirebaseFirestore.instance
                                   .collection('admin')
                                   .doc(adminModel.userID)
-                                  .set(adminModel.toJson());
-
-                              NavUtils.pushReplace(
-                                context: context,
-                                destination: const CreateUser(),
-                              );
+                                  .set(adminModel.toJson())
+                                  .then((value) {
+                                NavUtils.pushReplace(
+                                  context: context,
+                                  destination: const CreateUser(),
+                                );
+                              });
                             } catch (onError) {
                               AppUtils.showErrorDialog(
                                 title: 'User Upload Error',
