@@ -349,14 +349,14 @@ class _AddUserState extends State<AddUser> {
                             if (!_formKey.currentState!.validate()) {
                               return;
                             }
-                            // TODO: Implement Lecturer user creation logic
+
                             break;
 
                           case 'Agent':
                             if (!_formKey.currentState!.validate()) {
                               return;
                             }
-                            // TODO: Implement Agent user creation logic
+
                             break;
 
                           default:
