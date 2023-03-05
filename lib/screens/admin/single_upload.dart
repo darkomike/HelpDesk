@@ -223,6 +223,7 @@ class _AddUserState extends State<AddUser> {
                         }
 
                         switch (_role) {
+                          //Student Account Creation Implementation
                           case 'Student':
                             if (_year == "Choose") {
                               AppUtils.showErrorDialog(
@@ -258,8 +259,8 @@ class _AddUserState extends State<AddUser> {
                               User? user;
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
-                                email: _emailController.text.trim(),
-                                password: _studentNumberController.text.trim(),
+                                email: studentModel.email,
+                                password: studentModel.studentReference,
                               )
                                   .then((value) {
                                 user = value.user;
@@ -269,11 +270,25 @@ class _AddUserState extends State<AddUser> {
                               await FirebaseFirestore.instance
                                   .collection('students')
                                   .doc(studentModel.studentID)
-                                  .set(studentModel.toJson())
+                                  .set(studentModel.toJson());
+
+                              await SendEmail()
+                                  .sendEmail(
+                                receipientEmail: studentModel.email,
+                                receipientName:
+                                    '${studentModel.otherNames} ${studentModel.surname}',
+                                emailSubject: 'HelpDesk Account Creation',
+                                title: 'ACCOUNT CREATED SUCCESSFULLY',
+                                password: studentModel.studentReference,
+                                userID: studentModel.email,
+                              )
                                   .then((value) {
-                                NavUtils.pushReplace(
-                                  context: context,
-                                  destination: const CreateUser(),
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content:
+                                        Text('Account Created Successfully'),
+                                  ),
                                 );
                               });
                             } catch (onError) {
@@ -286,10 +301,15 @@ class _AddUserState extends State<AddUser> {
                             } finally {
                               setState(() {
                                 _isLoading = false;
+                                NavUtils.pushReplace(
+                                  context: context,
+                                  destination: const CreateUser(),
+                                );
                               });
                             }
                             break;
 
+                          //Admin Account Creations Implementation
                           case 'Admin':
                             if (!_formKey.currentState!.validate()) {
                               return;
@@ -309,12 +329,13 @@ class _AddUserState extends State<AddUser> {
                             );
 
                             User? user;
+                            final String password = AppUtils.randomString(12);
 
                             try {
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                 email: _emailController.text.trim(),
-                                password: _studentNumberController.text.trim(),
+                                password: password,
                               )
                                   .then((value) {
                                 user = value.user;
@@ -324,16 +345,30 @@ class _AddUserState extends State<AddUser> {
                               await FirebaseFirestore.instance
                                   .collection('admin')
                                   .doc(adminModel.userID)
-                                  .set(adminModel.toJson())
+                                  .set(adminModel.toJson());
+
+                              await SendEmail()
+                                  .sendEmail(
+                                receipientEmail: adminModel.email,
+                                receipientName:
+                                    '${adminModel.otherNames} ${adminModel.surname}',
+                                emailSubject: 'HelpDesk Account Creation',
+                                title: 'ACCOUNT CREATED SUCCESSFULLY',
+                                password: password,
+                                userID: adminModel.email,
+                              )
                                   .then((value) {
-                                NavUtils.pushReplace(
-                                  context: context,
-                                  destination: const CreateUser(),
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content:
+                                        Text('Account Created Successfully'),
+                                  ),
                                 );
                               });
                             } catch (onError) {
                               AppUtils.showErrorDialog(
-                                title: 'User Upload Error',
+                                title: 'User Creation Error',
                                 errorMessage:
                                     "Oops, something went wrong.\n${onError.toString()}",
                                 context: context,
@@ -341,6 +376,10 @@ class _AddUserState extends State<AddUser> {
                             } finally {
                               setState(() {
                                 _isLoading = false;
+                                NavUtils.pushReplace(
+                                  context: context,
+                                  destination: const CreateUser(),
+                                );
                               });
                             }
                             break;
